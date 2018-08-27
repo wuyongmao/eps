@@ -1,0 +1,66 @@
+//用户表
+
+[
+  {
+    "field": "QQ",
+    "title": "QQ号码",
+    "width": 100
+  },
+  {
+    "field": "PMMUD02",
+    "title": "供应商代号(只有供应商用户才有)",
+    "width": 100
+  },
+  {
+    "field": "ACC",
+    "title": "帐号",
+    "width": 100
+  },
+  {
+    "field": "TEL",
+    "title": "座机号码",
+    "width": 100
+  },
+  {
+    "field": "WECHAT",
+    "title": "微信号",
+    "width": 100
+  },
+  {
+    "field": "HP",
+    "title": "手机号码",
+    "width": 100
+  },
+  {
+    "field": "CHGTIME",
+    "title": "更改时间",
+    "width": 100
+  },
+  {
+    "field": "ORG",
+    "title": "营运组织",
+    "width": 100
+  },
+  {
+    "field": "EMAIL",
+    "title": "邮件地址",
+    "width": 100
+  },
+  {
+    "field": "DEPT",
+    "title": "部门",
+    "width": 100
+  },
+  {
+    "field": "NAME",
+    "width": 100
+  },
+  {
+    "field": "ACCID",
+    "width": 100
+  },
+  {
+    "field": "PWD",
+    "width": 100
+  }
+]

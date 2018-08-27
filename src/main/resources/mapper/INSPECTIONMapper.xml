@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.INSPECTIONMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.INSPECTION">
+    <result column="REGULATIONID" jdbcType="VARCHAR" property="REGULATIONID" />
+    <result column="DELLOTMIN" jdbcType="VARCHAR" property="DELLOTMIN" />
+    <result column="DELLOTMAX" jdbcType="VARCHAR" property="DELLOTMAX" />
+    <result column="SAMPLES" jdbcType="VARCHAR" property="SAMPLES" />
+    <result column="AC" jdbcType="VARCHAR" property="AC" />
+    <result column="RE" jdbcType="VARCHAR" property="RE" />
+    <result column="INPUTTER" jdbcType="VARCHAR" property="INPUTTER" />
+    <result column="INPUTDATE" jdbcType="VARCHAR" property="INPUTDATE" />
+    <result column="CONFIRM" jdbcType="VARCHAR" property="CONFIRM" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGULATIONID, DELLOTMIN, DELLOTMAX, SAMPLES, AC, RE, INPUTTER, INPUTDATE, CONFIRM
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.INSPECTIONExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from INSPECTION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.INSPECTIONExample">
+    delete from INSPECTION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.INSPECTION">
+    insert into INSPECTION (REGULATIONID, DELLOTMIN, DELLOTMAX, 
+      SAMPLES, AC, RE, INPUTTER, 
+      INPUTDATE, CONFIRM)
+    values (#{REGULATIONID,jdbcType=VARCHAR}, #{DELLOTMIN,jdbcType=VARCHAR}, #{DELLOTMAX,jdbcType=VARCHAR}, 
+      #{SAMPLES,jdbcType=VARCHAR}, #{AC,jdbcType=VARCHAR}, #{RE,jdbcType=VARCHAR}, #{INPUTTER,jdbcType=VARCHAR}, 
+      #{INPUTDATE,jdbcType=VARCHAR}, #{CONFIRM,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.INSPECTION">
+    insert into INSPECTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="REGULATIONID != null">
+        REGULATIONID,
+      </if>
+      <if test="DELLOTMIN != null">
+        DELLOTMIN,
+      </if>
+      <if test="DELLOTMAX != null">
+        DELLOTMAX,
+      </if>
+      <if test="SAMPLES != null">
+        SAMPLES,
+      </if>
+      <if test="AC != null">
+        AC,
+      </if>
+      <if test="RE != null">
+        RE,
+      </if>
+      <if test="INPUTTER != null">
+        INPUTTER,
+      </if>
+      <if test="INPUTDATE != null">
+        INPUTDATE,
+      </if>
+      <if test="CONFIRM != null">
+        CONFIRM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="REGULATIONID != null">
+        #{REGULATIONID,jdbcType=VARCHAR},
+      </if>
+      <if test="DELLOTMIN != null">
+        #{DELLOTMIN,jdbcType=VARCHAR},
+      </if>
+      <if test="DELLOTMAX != null">
+        #{DELLOTMAX,jdbcType=VARCHAR},
+      </if>
+      <if test="SAMPLES != null">
+        #{SAMPLES,jdbcType=VARCHAR},
+      </if>
+      <if test="AC != null">
+        #{AC,jdbcType=VARCHAR},
+      </if>
+      <if test="RE != null">
+        #{RE,jdbcType=VARCHAR},
+      </if>
+      <if test="INPUTTER != null">
+        #{INPUTTER,jdbcType=VARCHAR},
+      </if>
+      <if test="INPUTDATE != null">
+        #{INPUTDATE,jdbcType=VARCHAR},
+      </if>
+      <if test="CONFIRM != null">
+        #{CONFIRM,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.INSPECTIONExample" resultType="java.lang.Long">
+    select count(*) from INSPECTION
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update INSPECTION
+    <set>
+      <if test="record.REGULATIONID != null">
+        REGULATIONID = #{record.REGULATIONID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.DELLOTMIN != null">
+        DELLOTMIN = #{record.DELLOTMIN,jdbcType=VARCHAR},
+      </if>
+      <if test="record.DELLOTMAX != null">
+        DELLOTMAX = #{record.DELLOTMAX,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SAMPLES != null">
+        SAMPLES = #{record.SAMPLES,jdbcType=VARCHAR},
+      </if>
+      <if test="record.AC != null">
+        AC = #{record.AC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.RE != null">
+        RE = #{record.RE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.INPUTTER != null">
+        INPUTTER = #{record.INPUTTER,jdbcType=VARCHAR},
+      </if>
+      <if test="record.INPUTDATE != null">
+        INPUTDATE = #{record.INPUTDATE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CONFIRM != null">
+        CONFIRM = #{record.CONFIRM,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update INSPECTION
+    set REGULATIONID = #{record.REGULATIONID,jdbcType=VARCHAR},
+      DELLOTMIN = #{record.DELLOTMIN,jdbcType=VARCHAR},
+      DELLOTMAX = #{record.DELLOTMAX,jdbcType=VARCHAR},
+      SAMPLES = #{record.SAMPLES,jdbcType=VARCHAR},
+      AC = #{record.AC,jdbcType=VARCHAR},
+      RE = #{record.RE,jdbcType=VARCHAR},
+      INPUTTER = #{record.INPUTTER,jdbcType=VARCHAR},
+      INPUTDATE = #{record.INPUTDATE,jdbcType=VARCHAR},
+      CONFIRM = #{record.CONFIRM,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

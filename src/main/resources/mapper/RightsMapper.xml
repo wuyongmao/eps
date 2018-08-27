@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.RightsMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Rights">
+    <id column="RIGHTSID" jdbcType="VARCHAR" property="rightsid" />
+    <result column="ACCID" jdbcType="DECIMAL" property="accid" />
+    <result column="RIGHTLIST" jdbcType="VARCHAR" property="rightlist" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    RIGHTSID, ACCID, RIGHTLIST
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.RightsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from RIGHTS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from RIGHTS
+    where RIGHTSID = #{rightsid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from RIGHTS
+    where RIGHTSID = #{rightsid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.RightsExample">
+    delete from RIGHTS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Rights">
+    <selectKey keyProperty="rightsid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into RIGHTS (RIGHTSID, ACCID, RIGHTLIST
+      )
+    values (#{rightsid,jdbcType=VARCHAR}, #{accid,jdbcType=DECIMAL}, #{rightlist,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Rights">
+    <selectKey keyProperty="rightsid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into RIGHTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      RIGHTSID,
+      <if test="accid != null">
+        ACCID,
+      </if>
+      <if test="rightlist != null">
+        RIGHTLIST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{rightsid,jdbcType=VARCHAR},
+      <if test="accid != null">
+        #{accid,jdbcType=DECIMAL},
+      </if>
+      <if test="rightlist != null">
+        #{rightlist,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.RightsExample" resultType="java.lang.Long">
+    select count(*) from RIGHTS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update RIGHTS
+    <set>
+      <if test="record.rightsid != null">
+        RIGHTSID = #{record.rightsid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accid != null">
+        ACCID = #{record.accid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rightlist != null">
+        RIGHTLIST = #{record.rightlist,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update RIGHTS
+    set RIGHTSID = #{record.rightsid,jdbcType=VARCHAR},
+      ACCID = #{record.accid,jdbcType=DECIMAL},
+      RIGHTLIST = #{record.rightlist,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Rights">
+    update RIGHTS
+    <set>
+      <if test="accid != null">
+        ACCID = #{accid,jdbcType=DECIMAL},
+      </if>
+      <if test="rightlist != null">
+        RIGHTLIST = #{rightlist,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RIGHTSID = #{rightsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Rights">
+    update RIGHTS
+    set ACCID = #{accid,jdbcType=DECIMAL},
+      RIGHTLIST = #{rightlist,jdbcType=VARCHAR}
+    where RIGHTSID = #{rightsid,jdbcType=VARCHAR}
+  </update>
+</mapper>

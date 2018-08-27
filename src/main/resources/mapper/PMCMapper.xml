@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.PMCMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.PMC">
+    <result column="PMC01" jdbcType="VARCHAR" property="PMC01" />
+    <result column="PMC02" jdbcType="VARCHAR" property="PMC02" />
+    <result column="PMC03" jdbcType="VARCHAR" property="PMC03" />
+    <result column="PMC081" jdbcType="VARCHAR" property="PMC081" />
+    <result column="PMC082" jdbcType="VARCHAR" property="PMC082" />
+    <result column="PMC091" jdbcType="VARCHAR" property="PMC091" />
+    <result column="PMC092" jdbcType="VARCHAR" property="PMC092" />
+    <result column="PMC093" jdbcType="VARCHAR" property="PMC093" />
+    <result column="PMC10" jdbcType="VARCHAR" property="PMC10" />
+    <result column="PMC11" jdbcType="VARCHAR" property="PMC11" />
+    <result column="PMC12" jdbcType="VARCHAR" property="PMC12" />
+    <result column="PMCDATE" jdbcType="VARCHAR" property="PMCDATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PMC01, PMC02, PMC03, PMC081, PMC082, PMC091, PMC092, PMC093, PMC10, PMC11, PMC12, 
+    PMCDATE
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.PMCExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PMC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.PMCExample">
+    delete from PMC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.PMC">
+    insert into PMC (PMC01, PMC02, PMC03, 
+      PMC081, PMC082, PMC091, 
+      PMC092, PMC093, PMC10, 
+      PMC11, PMC12, PMCDATE
+      )
+    values (#{PMC01,jdbcType=VARCHAR}, #{PMC02,jdbcType=VARCHAR}, #{PMC03,jdbcType=VARCHAR}, 
+      #{PMC081,jdbcType=VARCHAR}, #{PMC082,jdbcType=VARCHAR}, #{PMC091,jdbcType=VARCHAR}, 
+      #{PMC092,jdbcType=VARCHAR}, #{PMC093,jdbcType=VARCHAR}, #{PMC10,jdbcType=VARCHAR}, 
+      #{PMC11,jdbcType=VARCHAR}, #{PMC12,jdbcType=VARCHAR}, #{PMCDATE,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.PMC">
+    insert into PMC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="PMC01 != null">
+        PMC01,
+      </if>
+      <if test="PMC02 != null">
+        PMC02,
+      </if>
+      <if test="PMC03 != null">
+        PMC03,
+      </if>
+      <if test="PMC081 != null">
+        PMC081,
+      </if>
+      <if test="PMC082 != null">
+        PMC082,
+      </if>
+      <if test="PMC091 != null">
+        PMC091,
+      </if>
+      <if test="PMC092 != null">
+        PMC092,
+      </if>
+      <if test="PMC093 != null">
+        PMC093,
+      </if>
+      <if test="PMC10 != null">
+        PMC10,
+      </if>
+      <if test="PMC11 != null">
+        PMC11,
+      </if>
+      <if test="PMC12 != null">
+        PMC12,
+      </if>
+      <if test="PMCDATE != null">
+        PMCDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="PMC01 != null">
+        #{PMC01,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC02 != null">
+        #{PMC02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC03 != null">
+        #{PMC03,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC081 != null">
+        #{PMC081,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC082 != null">
+        #{PMC082,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC091 != null">
+        #{PMC091,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC092 != null">
+        #{PMC092,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC093 != null">
+        #{PMC093,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC10 != null">
+        #{PMC10,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC11 != null">
+        #{PMC11,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC12 != null">
+        #{PMC12,jdbcType=VARCHAR},
+      </if>
+      <if test="PMCDATE != null">
+        #{PMCDATE,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.PMCExample" resultType="java.lang.Long">
+    select count(*) from PMC
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PMC
+    <set>
+      <if test="record.PMC01 != null">
+        PMC01 = #{record.PMC01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC02 != null">
+        PMC02 = #{record.PMC02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC03 != null">
+        PMC03 = #{record.PMC03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC081 != null">
+        PMC081 = #{record.PMC081,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC082 != null">
+        PMC082 = #{record.PMC082,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC091 != null">
+        PMC091 = #{record.PMC091,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC092 != null">
+        PMC092 = #{record.PMC092,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC093 != null">
+        PMC093 = #{record.PMC093,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC10 != null">
+        PMC10 = #{record.PMC10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC11 != null">
+        PMC11 = #{record.PMC11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC12 != null">
+        PMC12 = #{record.PMC12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMCDATE != null">
+        PMCDATE = #{record.PMCDATE,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PMC
+    set PMC01 = #{record.PMC01,jdbcType=VARCHAR},
+      PMC02 = #{record.PMC02,jdbcType=VARCHAR},
+      PMC03 = #{record.PMC03,jdbcType=VARCHAR},
+      PMC081 = #{record.PMC081,jdbcType=VARCHAR},
+      PMC082 = #{record.PMC082,jdbcType=VARCHAR},
+      PMC091 = #{record.PMC091,jdbcType=VARCHAR},
+      PMC092 = #{record.PMC092,jdbcType=VARCHAR},
+      PMC093 = #{record.PMC093,jdbcType=VARCHAR},
+      PMC10 = #{record.PMC10,jdbcType=VARCHAR},
+      PMC11 = #{record.PMC11,jdbcType=VARCHAR},
+      PMC12 = #{record.PMC12,jdbcType=VARCHAR},
+      PMCDATE = #{record.PMCDATE,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

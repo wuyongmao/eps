@@ -1,0 +1,57 @@
+body {
+	padding: 0;
+	margin: 0;
+	background-image: url("../img/Signinbg.jpg");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+#header {
+	width: 80%;
+	height: 85px;
+	font-size: 22px;
+	line-height: 85px;
+	padding-left: 6%;
+	overflow: hidden;
+	color: #FFF;
+	letter-spacing: 1px;
+	padding-top: 20px;
+}
+#SginMain {	
+	width: 100%;
+	padding-top: 8%;
+}
+#footer {
+	font-size: 14px;
+	width: 100%;
+	height: 65px;
+	line-height: 65px;
+	text-align: center;
+	color: #FFF;
+}
+#SginMainbg {
+	background-color: #FFF;
+	width: 316px;
+	height: 350px;
+	box-shadow: 7px 7px 7px rgba(0,0,0,.7);
+	border-radius:3px;
+	margin-left: 65%;
+	padding-top: 30px;
+	background-color: #f9f9f9;
+}
+#SginTitle {
+	align-content: center;
+	font-size: 20px;
+	border-bottom: 3px dashed #999999;
+	width: 254px;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+}
+#SginLink {
+	 text-align: left; 
+	 margin-left: 10%; 
+	 margin-top: 20px;
+}
+#SginLink a{
+	text-decoration: none;
+	color: #3f89ec;
+}

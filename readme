@@ -1,0 +1,14 @@
+//采购系统eps
+
+整合:SpringMVC+Mybatis +EasyUI
+
+
+ 1.使用druid连接池：http://localhost:7070/eps/druid/index.html   可监控数据连接
+ 2.http://localhost:7070/eps/ws/sample?wsdl                   查看webservice
+ 3.mbg.xml 为逆向创建dao、mapper配置文件。直接运行生成    com.chenyuantech.eps.test.MBGTest 
+
+
+
+ 
+
+

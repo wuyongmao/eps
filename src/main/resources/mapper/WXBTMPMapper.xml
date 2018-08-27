@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.WXBTMPMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.WXBTMP">
+    <id column="WID" jdbcType="VARCHAR" property="WID" />
+    <result column="WXB04" jdbcType="VARCHAR" property="WXB04" />
+    <result column="WXB05" jdbcType="VARCHAR" property="WXB05" />
+    <result column="WXB06" jdbcType="VARCHAR" property="WXB06" />
+    <result column="WXB08" jdbcType="DECIMAL" property="WXB08" />
+    <result column="WXB09" jdbcType="DECIMAL" property="WXB09" />
+    <result column="WXB14" jdbcType="VARCHAR" property="WXB14" />
+    <result column="WXB15" jdbcType="VARCHAR" property="WXB15" />
+    <result column="WDATE" jdbcType="DATE" property="WDATE" />
+    <result column="WSIZE" jdbcType="VARCHAR" property="WSIZE" />
+    <result column="WTR" jdbcType="VARCHAR" property="WTR" />
+    <result column="WXB05T" jdbcType="VARCHAR" property="WXB05T" />
+    <result column="WXB10" jdbcType="DECIMAL" property="WXB10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    WID, WXB04, WXB05, WXB06, WXB08, WXB09, WXB14, WXB15, WDATE, WSIZE, WTR, WXB05T, 
+    WXB10
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.WXBTMPExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from WXBTMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WXBTMP
+    where WID = #{WID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from WXBTMP
+    where WID = #{WID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.WXBTMPExample">
+    delete from WXBTMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.WXBTMP">
+    insert into WXBTMP (WID, WXB04, WXB05, 
+      WXB06, WXB08, WXB09, 
+      WXB14, WXB15, WDATE, WSIZE, 
+      WTR, WXB05T, WXB10)
+    values (#{WID,jdbcType=VARCHAR}, #{WXB04,jdbcType=VARCHAR}, #{WXB05,jdbcType=VARCHAR}, 
+      #{WXB06,jdbcType=VARCHAR}, #{WXB08,jdbcType=DECIMAL}, #{WXB09,jdbcType=DECIMAL}, 
+      #{WXB14,jdbcType=VARCHAR}, #{WXB15,jdbcType=VARCHAR}, #{WDATE,jdbcType=DATE}, #{WSIZE,jdbcType=VARCHAR}, 
+      #{WTR,jdbcType=VARCHAR}, #{WXB05T,jdbcType=VARCHAR}, #{WXB10,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.WXBTMP">
+    insert into WXBTMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="WID != null">
+        WID,
+      </if>
+      <if test="WXB04 != null">
+        WXB04,
+      </if>
+      <if test="WXB05 != null">
+        WXB05,
+      </if>
+      <if test="WXB06 != null">
+        WXB06,
+      </if>
+      <if test="WXB08 != null">
+        WXB08,
+      </if>
+      <if test="WXB09 != null">
+        WXB09,
+      </if>
+      <if test="WXB14 != null">
+        WXB14,
+      </if>
+      <if test="WXB15 != null">
+        WXB15,
+      </if>
+      <if test="WDATE != null">
+        WDATE,
+      </if>
+      <if test="WSIZE != null">
+        WSIZE,
+      </if>
+      <if test="WTR != null">
+        WTR,
+      </if>
+      <if test="WXB05T != null">
+        WXB05T,
+      </if>
+      <if test="WXB10 != null">
+        WXB10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="WID != null">
+        #{WID,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB04 != null">
+        #{WXB04,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB05 != null">
+        #{WXB05,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB06 != null">
+        #{WXB06,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB08 != null">
+        #{WXB08,jdbcType=DECIMAL},
+      </if>
+      <if test="WXB09 != null">
+        #{WXB09,jdbcType=DECIMAL},
+      </if>
+      <if test="WXB14 != null">
+        #{WXB14,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB15 != null">
+        #{WXB15,jdbcType=VARCHAR},
+      </if>
+      <if test="WDATE != null">
+        #{WDATE,jdbcType=DATE},
+      </if>
+      <if test="WSIZE != null">
+        #{WSIZE,jdbcType=VARCHAR},
+      </if>
+      <if test="WTR != null">
+        #{WTR,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB05T != null">
+        #{WXB05T,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB10 != null">
+        #{WXB10,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.WXBTMPExample" resultType="java.lang.Long">
+    select count(*) from WXBTMP
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update WXBTMP
+    <set>
+      <if test="record.WID != null">
+        WID = #{record.WID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB04 != null">
+        WXB04 = #{record.WXB04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB05 != null">
+        WXB05 = #{record.WXB05,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB06 != null">
+        WXB06 = #{record.WXB06,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB08 != null">
+        WXB08 = #{record.WXB08,jdbcType=DECIMAL},
+      </if>
+      <if test="record.WXB09 != null">
+        WXB09 = #{record.WXB09,jdbcType=DECIMAL},
+      </if>
+      <if test="record.WXB14 != null">
+        WXB14 = #{record.WXB14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB15 != null">
+        WXB15 = #{record.WXB15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WDATE != null">
+        WDATE = #{record.WDATE,jdbcType=DATE},
+      </if>
+      <if test="record.WSIZE != null">
+        WSIZE = #{record.WSIZE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WTR != null">
+        WTR = #{record.WTR,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB05T != null">
+        WXB05T = #{record.WXB05T,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WXB10 != null">
+        WXB10 = #{record.WXB10,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update WXBTMP
+    set WID = #{record.WID,jdbcType=VARCHAR},
+      WXB04 = #{record.WXB04,jdbcType=VARCHAR},
+      WXB05 = #{record.WXB05,jdbcType=VARCHAR},
+      WXB06 = #{record.WXB06,jdbcType=VARCHAR},
+      WXB08 = #{record.WXB08,jdbcType=DECIMAL},
+      WXB09 = #{record.WXB09,jdbcType=DECIMAL},
+      WXB14 = #{record.WXB14,jdbcType=VARCHAR},
+      WXB15 = #{record.WXB15,jdbcType=VARCHAR},
+      WDATE = #{record.WDATE,jdbcType=DATE},
+      WSIZE = #{record.WSIZE,jdbcType=VARCHAR},
+      WTR = #{record.WTR,jdbcType=VARCHAR},
+      WXB05T = #{record.WXB05T,jdbcType=VARCHAR},
+      WXB10 = #{record.WXB10,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.WXBTMP">
+    update WXBTMP
+    <set>
+      <if test="WXB04 != null">
+        WXB04 = #{WXB04,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB05 != null">
+        WXB05 = #{WXB05,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB06 != null">
+        WXB06 = #{WXB06,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB08 != null">
+        WXB08 = #{WXB08,jdbcType=DECIMAL},
+      </if>
+      <if test="WXB09 != null">
+        WXB09 = #{WXB09,jdbcType=DECIMAL},
+      </if>
+      <if test="WXB14 != null">
+        WXB14 = #{WXB14,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB15 != null">
+        WXB15 = #{WXB15,jdbcType=VARCHAR},
+      </if>
+      <if test="WDATE != null">
+        WDATE = #{WDATE,jdbcType=DATE},
+      </if>
+      <if test="WSIZE != null">
+        WSIZE = #{WSIZE,jdbcType=VARCHAR},
+      </if>
+      <if test="WTR != null">
+        WTR = #{WTR,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB05T != null">
+        WXB05T = #{WXB05T,jdbcType=VARCHAR},
+      </if>
+      <if test="WXB10 != null">
+        WXB10 = #{WXB10,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where WID = #{WID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.WXBTMP">
+    update WXBTMP
+    set WXB04 = #{WXB04,jdbcType=VARCHAR},
+      WXB05 = #{WXB05,jdbcType=VARCHAR},
+      WXB06 = #{WXB06,jdbcType=VARCHAR},
+      WXB08 = #{WXB08,jdbcType=DECIMAL},
+      WXB09 = #{WXB09,jdbcType=DECIMAL},
+      WXB14 = #{WXB14,jdbcType=VARCHAR},
+      WXB15 = #{WXB15,jdbcType=VARCHAR},
+      WDATE = #{WDATE,jdbcType=DATE},
+      WSIZE = #{WSIZE,jdbcType=VARCHAR},
+      WTR = #{WTR,jdbcType=VARCHAR},
+      WXB05T = #{WXB05T,jdbcType=VARCHAR},
+      WXB10 = #{WXB10,jdbcType=DECIMAL}
+    where WID = #{WID,jdbcType=VARCHAR}
+  </update>
+</mapper>

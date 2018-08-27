@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.USERSExtMapper">
+
+
+	<select id="findUsersByParam" resultType="java.util.LinkedHashMap">
+		select
+		USERS.ACCID ACCID, USERS.NAME NAME,USERS. PWD PWD, USERS.PMMUD02
+		PMMUD02,
+		USERS.QQ QQ, USERS.EMAIL EMAIL,
+		USERS.WECHAT WECHAT, USERS.TEL
+		TEL, USERS.HP HP, USERS.ACC ACC,
+		USERS.DEPT DEPT,
+		USERS.ORG ORG,
+		USERS.CHGTIME CHGTIME,
+		USERS.STATUS STATUS,
+		USERS.ROLE ROLE,
+		PMC.PMC03,
+		PMC.PMC081
+		FROM USERS LEFT JOIN PMC ON USERS.PMMUD02= PMC.PMC01
+
+		where 1=1
+
+		<if test="users.NAME != null and users.NAME !=''   ">
+			and users.NAME=#{users.NAME}
+		</if>
+
+		<if test="users.ACCID != null and users.ACCID !=''   ">
+			and users.ACCID=#{users.ACCID}
+		</if>
+
+		<if test="users.DEPT != null and users.DEPT !=''   ">
+			and users.DEPT=#{users.DEPT}
+		</if>
+
+		<if test="users.ORG != null and users.ORG !=''   ">
+			and users.ORG=#{users.ORG}
+		</if>
+
+		<if test="users.EMAIL != null and users.EMAIL !=''   ">
+			and users.EMAIL=#{users.EMAIL}
+		</if>
+
+		<if test="users.CHGTIME != null and users.CHGTIME !=''   ">
+			and users.CHGTIME=#{users.CHGTIME}
+		</if>
+		<if test="users.PWD != null and users.PWD !=''   ">
+			and users.PWD=#{users.PWD}
+		</if>
+
+		<if test="users.QQ != null and users.QQ !=''   ">
+			and users.QQ=#{users.QQ}
+		</if>
+		<if test="users.PMMUD02 != null and users.PMMUD02 !=''   ">
+			and users.PMMUD02=#{users.PMMUD02}
+		</if>
+
+		<if test="users.HP != null and users.HP !=''   ">
+			and users.HP=#{users.HP}
+		</if>
+		<if test="users.WECHAT != null and users.WECHAT !=''   ">
+			and users.WECHAT=#{users.WECHAT}
+		</if>
+
+		<if test="users.ACC != null and users.ACC !=''   ">
+			and users.ACC=#{users.ACC}
+		</if>
+
+		<if test="users.TEL != null and users.TEL !=''   ">
+			and users.TEL=#{users.TEL}
+		</if>
+
+	</select>
+
+
+	<select id="getPMCEmaillist" resultType="java.lang.String" >
+		select email from users where PMMUD02='${PMMUD02}' and  email is not null  
+	</select>
+
+	<select id="getPMC03" resultType="java.lang.String">
+		 select pmc03 from pmc  where pmc.pmc01='${PMMUD02}' 
+	</select>
+
+
+
+</mapper>

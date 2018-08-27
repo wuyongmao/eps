@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>交期信息确认函</title>
+</head>
+
+<body>
+
+<div>
+
+<div align="center"  style="height:90%">
+    <table width="1000px">
+        <tr>
+            <td>
+                <h2 align="center">交期信息确认函</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>致：<span style="color:#F00;">${PMC03}</span></h3>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-indent:33px;">
+            	因我司在贵司订购材料，现需与贵司确认交货日期，请贵司根据以下链接<a href="https://www.chenyuantech.com/eps/">（此处为链接）</a>回填交期（订单号码：${PMN01} ,项次:${PMN02} ）。如贵司2天内（含星期六、星期天）未作出回复我司将视为贵司同意我司所提交期，烦请知悉，谢谢！
+        </tr>
+        <tr>
+            <td>
+          		<p>Thanks & Best Regards</p>
+                <p style="text-align:right;">
+                	中山辰元纺织科技有限公司<br />
+                	<span style="color:#F00;">${NOW}</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="height:10%">
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>

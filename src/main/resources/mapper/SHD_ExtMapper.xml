@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.SHD_ExtMapper">
+	<resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.SHD">
+		<id column="SHD01" jdbcType="VARCHAR" property="SHD01" />
+		<result column="SHD02" jdbcType="VARCHAR" property="SHD02" />
+		<result column="SHD03" jdbcType="VARCHAR" property="SHD03" />
+		<result column="SHD04" jdbcType="VARCHAR" property="SHD04" />
+		<result column="SHD05" jdbcType="DATE" property="SHD05" />
+		<result column="SHD06" jdbcType="DECIMAL" property="SHD06" />
+		<result column="SHD07" jdbcType="VARCHAR" property="SHD07" />
+		<result column="SHD08" jdbcType="VARCHAR" property="SHD08" />
+		<result column="SHD09" jdbcType="VARCHAR" property="SHD09" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		SHD01, SHD02, SHD03, SHD04, SHD05, SHD06, SHD07, SHD08, SHD09
+	</sql>
+	<select id="selectSHDBySHD01SHD02" resultType="java.util.LinkedHashMap">
+		select
+		<include refid="Base_Column_List" />
+		from shd
+		<where>
+			 
+              shd07='Y'
+			<if test="SHD01 != null and SHD01 !=''  ">
+				and SHD01='${SHD01}'
+			</if>
+			<if test="SHD02 != null and SHD02 !=''  ">
+				and SHD02='${SHD02}'
+			</if>
+			<if test=" ROLE == 'GYS'    ">
+				<if test="PMMUD02 != null and PMMUD02 != ''">
+					AND  SHD01 like '${PMMUD02}%'
+				</if> 
+			</if>			 
+
+		</where>
+
+
+
+	</select>
+</mapper>

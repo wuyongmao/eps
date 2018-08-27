@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.RvaMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Rva">
+    <id column="RVA01" jdbcType="VARCHAR" property="rva01" />
+    <result column="RVA02" jdbcType="VARCHAR" property="rva02" />
+    <result column="RVA06" jdbcType="VARCHAR" property="rva06" />
+    <result column="RVA32" jdbcType="VARCHAR" property="rva32" />
+    <result column="RVACONF" jdbcType="VARCHAR" property="rvaconf" />
+    <result column="RVAUSER" jdbcType="VARCHAR" property="rvauser" />
+    <result column="RVAORIU" jdbcType="VARCHAR" property="rvaoriu" />
+    <result column="RUAMODU" jdbcType="VARCHAR" property="ruamodu" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    RVA01, RVA02, RVA06, RVA32, RVACONF, RVAUSER, RVAORIU, RUAMODU
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.RvaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from RVA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from RVA
+    where RVA01 = #{rva01,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from RVA
+    where RVA01 = #{rva01,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.RvaExample">
+    delete from RVA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Rva">
+    insert into RVA (RVA01, RVA02, RVA06, 
+      RVA32, RVACONF, RVAUSER, 
+      RVAORIU, RUAMODU)
+    values (#{rva01,jdbcType=VARCHAR}, #{rva02,jdbcType=VARCHAR}, #{rva06,jdbcType=VARCHAR}, 
+      #{rva32,jdbcType=VARCHAR}, #{rvaconf,jdbcType=VARCHAR}, #{rvauser,jdbcType=VARCHAR}, 
+      #{rvaoriu,jdbcType=VARCHAR}, #{ruamodu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Rva">
+    insert into RVA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rva01 != null">
+        RVA01,
+      </if>
+      <if test="rva02 != null">
+        RVA02,
+      </if>
+      <if test="rva06 != null">
+        RVA06,
+      </if>
+      <if test="rva32 != null">
+        RVA32,
+      </if>
+      <if test="rvaconf != null">
+        RVACONF,
+      </if>
+      <if test="rvauser != null">
+        RVAUSER,
+      </if>
+      <if test="rvaoriu != null">
+        RVAORIU,
+      </if>
+      <if test="ruamodu != null">
+        RUAMODU,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rva01 != null">
+        #{rva01,jdbcType=VARCHAR},
+      </if>
+      <if test="rva02 != null">
+        #{rva02,jdbcType=VARCHAR},
+      </if>
+      <if test="rva06 != null">
+        #{rva06,jdbcType=VARCHAR},
+      </if>
+      <if test="rva32 != null">
+        #{rva32,jdbcType=VARCHAR},
+      </if>
+      <if test="rvaconf != null">
+        #{rvaconf,jdbcType=VARCHAR},
+      </if>
+      <if test="rvauser != null">
+        #{rvauser,jdbcType=VARCHAR},
+      </if>
+      <if test="rvaoriu != null">
+        #{rvaoriu,jdbcType=VARCHAR},
+      </if>
+      <if test="ruamodu != null">
+        #{ruamodu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.RvaExample" resultType="java.lang.Long">
+    select count(*) from RVA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update RVA
+    <set>
+      <if test="record.rva01 != null">
+        RVA01 = #{record.rva01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rva02 != null">
+        RVA02 = #{record.rva02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rva06 != null">
+        RVA06 = #{record.rva06,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rva32 != null">
+        RVA32 = #{record.rva32,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvaconf != null">
+        RVACONF = #{record.rvaconf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvauser != null">
+        RVAUSER = #{record.rvauser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvaoriu != null">
+        RVAORIU = #{record.rvaoriu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruamodu != null">
+        RUAMODU = #{record.ruamodu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update RVA
+    set RVA01 = #{record.rva01,jdbcType=VARCHAR},
+      RVA02 = #{record.rva02,jdbcType=VARCHAR},
+      RVA06 = #{record.rva06,jdbcType=VARCHAR},
+      RVA32 = #{record.rva32,jdbcType=VARCHAR},
+      RVACONF = #{record.rvaconf,jdbcType=VARCHAR},
+      RVAUSER = #{record.rvauser,jdbcType=VARCHAR},
+      RVAORIU = #{record.rvaoriu,jdbcType=VARCHAR},
+      RUAMODU = #{record.ruamodu,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Rva">
+    update RVA
+    <set>
+      <if test="rva02 != null">
+        RVA02 = #{rva02,jdbcType=VARCHAR},
+      </if>
+      <if test="rva06 != null">
+        RVA06 = #{rva06,jdbcType=VARCHAR},
+      </if>
+      <if test="rva32 != null">
+        RVA32 = #{rva32,jdbcType=VARCHAR},
+      </if>
+      <if test="rvaconf != null">
+        RVACONF = #{rvaconf,jdbcType=VARCHAR},
+      </if>
+      <if test="rvauser != null">
+        RVAUSER = #{rvauser,jdbcType=VARCHAR},
+      </if>
+      <if test="rvaoriu != null">
+        RVAORIU = #{rvaoriu,jdbcType=VARCHAR},
+      </if>
+      <if test="ruamodu != null">
+        RUAMODU = #{ruamodu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RVA01 = #{rva01,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Rva">
+    update RVA
+    set RVA02 = #{rva02,jdbcType=VARCHAR},
+      RVA06 = #{rva06,jdbcType=VARCHAR},
+      RVA32 = #{rva32,jdbcType=VARCHAR},
+      RVACONF = #{rvaconf,jdbcType=VARCHAR},
+      RVAUSER = #{rvauser,jdbcType=VARCHAR},
+      RVAORIU = #{rvaoriu,jdbcType=VARCHAR},
+      RUAMODU = #{ruamodu,jdbcType=VARCHAR}
+    where RVA01 = #{rva01,jdbcType=VARCHAR}
+  </update>
+</mapper>

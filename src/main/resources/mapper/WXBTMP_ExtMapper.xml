@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.WXBTMP_ExtMapper">
+	<resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.WXBTMP">
+		<id column="WID" jdbcType="VARCHAR" property="WID" />
+		<result column="WXB04" jdbcType="VARCHAR" property="WXB04" />
+		<result column="WXB05" jdbcType="VARCHAR" property="WXB05" />
+		<result column="WXB06" jdbcType="VARCHAR" property="WXB06" />
+		<result column="WXB08" jdbcType="DECIMAL" property="WXB08" />
+		<result column="WXB09" jdbcType="DECIMAL" property="WXB09" />
+		<result column="WXB14" jdbcType="VARCHAR" property="WXB14" />
+		<result column="WXB15" jdbcType="VARCHAR" property="WXB15" />
+		<result column="WDATE" jdbcType="DATE" property="WDATE" />
+		<result column="WSIZE" jdbcType="VARCHAR" property="WSIZE" />
+		<result column="WTR" jdbcType="VARCHAR" property="WTR" />
+		<result column="WXB05T" jdbcType="VARCHAR" property="WXB05T" />
+	</resultMap>
+
+	<select id="selectWXBTMPByParam" resultType="java.util.LinkedHashMap">
+
+		select w.wxb04, w.wxb05, w.wxb06, w.wxb08, w.wxb09,w.wxb10, w.wxb14 , w.wxb15,
+		w.wxb15 PMN04
+		,a.ima01, a.ima02 PMN041, a.ta_ima01 AS "SIZE", a.ima63
+		PMN07, WID,
+		WDATE,
+		WSIZE,
+		WTR,wxb05t,
+		a.tc_tqa03 IMA021 FROM wxbtmp w LEFT
+		JOIN ima a ON a.ima01=w.wxb15
+
+		<where>
+			1=1
+			<if test="wxbtmp.WXB05T != null and wxbtmp.WXB05T != ''    ">
+				and WXB05T = #{wxbtmp.WXB05T}
+			</if>
+			<if test="wxbtmp.WXB05 != null and wxbtmp.WXB05 != ''    ">
+				and WXB05 = #{wxbtmp.WXB05}
+			</if>
+			<if test="wxbtmp.WSIZE != null and wxbtmp.WSIZE != ''    ">
+				and WSIZE = #{wxbtmp.WSIZE}
+			</if>			
+			<if test="wxbtmp.WTR != null and wxbtmp.WTR != ''    ">
+				and WTR = #{wxbtmp.WTR}
+			</if>
+            <if test="WXB11 != null and WXB11 != ''"> 
+				and to_char(wdate,'YYYY-MM-DD')= '${WXB11}' 
+			</if>
+
+		</where>
+		order by WDATE
+	</select>
+
+
+</mapper>

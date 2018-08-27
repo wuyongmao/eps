@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>交期信息确认函</title>
+</head>
+
+<body>
+
+<div>
+
+<div align="center"  style="height:90%">
+    <table width="1000px">
+        <tr>
+            <td>
+                <h2 align="center">交期信息确认函</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>致：辰元</h3>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-indent:33px;">
+	        对于贵司订购材料(订单号码：${PMN01} ,项次:${PMN02} ）的交期，现我司已回填/变更，具体变更情况请贵司于<a href="https://www.chenyuantech.com/eps/">系统</a>内查看，烦请知悉，谢谢！ 
+ 		 
+		 
+       
+       </tr>
+        <tr>
+            <td>
+          		<p>Thanks & Best Regards</p>
+                <p style="text-align:right;">
+                	${PMC03}<br />
+                	<span style="color:#F00;">${NOW}</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="height:10%">
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>

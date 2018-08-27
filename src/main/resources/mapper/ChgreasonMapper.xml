@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.ChgreasonMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Chgreason">
+    <id column="CHGID" jdbcType="VARCHAR" property="chgid" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="REASONDESC" jdbcType="VARCHAR" property="reasondesc" />
+    <result column="GS" jdbcType="VARCHAR" property="gs" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CHGID, REASON, REASONDESC, GS, STATUS
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.ChgreasonExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CHGREASON
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CHGREASON
+    where CHGID = #{chgid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CHGREASON
+    where CHGID = #{chgid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.ChgreasonExample">
+    delete from CHGREASON
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Chgreason">
+    <selectKey keyProperty="chgid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into CHGREASON (CHGID, REASON, REASONDESC, 
+      GS, STATUS)
+    values (#{chgid,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{reasondesc,jdbcType=VARCHAR}, 
+      #{gs,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Chgreason">
+    <selectKey keyProperty="chgid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into CHGREASON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      CHGID,
+      <if test="reason != null">
+        REASON,
+      </if>
+      <if test="reasondesc != null">
+        REASONDESC,
+      </if>
+      <if test="gs != null">
+        GS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{chgid,jdbcType=VARCHAR},
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondesc != null">
+        #{reasondesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gs != null">
+        #{gs,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.ChgreasonExample" resultType="java.lang.Long">
+    select count(*) from CHGREASON
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CHGREASON
+    <set>
+      <if test="record.chgid != null">
+        CHGID = #{record.chgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reason != null">
+        REASON = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reasondesc != null">
+        REASONDESC = #{record.reasondesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gs != null">
+        GS = #{record.gs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CHGREASON
+    set CHGID = #{record.chgid,jdbcType=VARCHAR},
+      REASON = #{record.reason,jdbcType=VARCHAR},
+      REASONDESC = #{record.reasondesc,jdbcType=VARCHAR},
+      GS = #{record.gs,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Chgreason">
+    update CHGREASON
+    <set>
+      <if test="reason != null">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="reasondesc != null">
+        REASONDESC = #{reasondesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gs != null">
+        GS = #{gs,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where CHGID = #{chgid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Chgreason">
+    update CHGREASON
+    set REASON = #{reason,jdbcType=VARCHAR},
+      REASONDESC = #{reasondesc,jdbcType=VARCHAR},
+      GS = #{gs,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR}
+    where CHGID = #{chgid,jdbcType=VARCHAR}
+  </update>
+</mapper>

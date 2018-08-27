@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.DeliverylogMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Deliverylog">
+    <id column="DELID" jdbcType="VARCHAR" property="delid" />
+    <result column="DLVID" jdbcType="VARCHAR" property="dlvid" />
+    <result column="ACCID" jdbcType="VARCHAR" property="accid" />
+    <result column="DLVDATE" jdbcType="VARCHAR" property="dlvdate" />
+    <result column="PMN02" jdbcType="DECIMAL" property="pmn02" />
+    <result column="PMN01" jdbcType="VARCHAR" property="pmn01" />
+    <result column="NUM" jdbcType="DECIMAL" property="num" />
+    <result column="YSHL" jdbcType="DECIMAL" property="yshl" />
+    <result column="WSHL" jdbcType="DECIMAL" property="wshl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DELID, DLVID, ACCID, DLVDATE, PMN02, PMN01, NUM, YSHL, WSHL
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.DeliverylogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DELIVERYLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DELIVERYLOG
+    where DELID = #{delid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from DELIVERYLOG
+    where DELID = #{delid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.DeliverylogExample">
+    delete from DELIVERYLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Deliverylog">
+    <selectKey keyProperty="delid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into DELIVERYLOG (DELID, DLVID, ACCID, 
+      DLVDATE, PMN02, PMN01, 
+      NUM, YSHL, WSHL)
+    values (#{delid,jdbcType=VARCHAR}, #{dlvid,jdbcType=VARCHAR}, #{accid,jdbcType=VARCHAR}, 
+      #{dlvdate,jdbcType=VARCHAR}, #{pmn02,jdbcType=DECIMAL}, #{pmn01,jdbcType=VARCHAR}, 
+      #{num,jdbcType=DECIMAL}, #{yshl,jdbcType=DECIMAL}, #{wshl,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Deliverylog">
+    <selectKey keyProperty="delid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into DELIVERYLOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      DELID,
+      <if test="dlvid != null">
+        DLVID,
+      </if>
+      <if test="accid != null">
+        ACCID,
+      </if>
+      <if test="dlvdate != null">
+        DLVDATE,
+      </if>
+      <if test="pmn02 != null">
+        PMN02,
+      </if>
+      <if test="pmn01 != null">
+        PMN01,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="yshl != null">
+        YSHL,
+      </if>
+      <if test="wshl != null">
+        WSHL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{delid,jdbcType=VARCHAR},
+      <if test="dlvid != null">
+        #{dlvid,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlvdate != null">
+        #{dlvdate,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        #{pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="pmn01 != null">
+        #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="yshl != null">
+        #{yshl,jdbcType=DECIMAL},
+      </if>
+      <if test="wshl != null">
+        #{wshl,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.DeliverylogExample" resultType="java.lang.Long">
+    select count(*) from DELIVERYLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update DELIVERYLOG
+    <set>
+      <if test="record.delid != null">
+        DELID = #{record.delid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dlvid != null">
+        DLVID = #{record.dlvid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accid != null">
+        ACCID = #{record.accid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dlvdate != null">
+        DLVDATE = #{record.dlvdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmn02 != null">
+        PMN02 = #{record.pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pmn01 != null">
+        PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null">
+        NUM = #{record.num,jdbcType=DECIMAL},
+      </if>
+      <if test="record.yshl != null">
+        YSHL = #{record.yshl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wshl != null">
+        WSHL = #{record.wshl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update DELIVERYLOG
+    set DELID = #{record.delid,jdbcType=VARCHAR},
+      DLVID = #{record.dlvid,jdbcType=VARCHAR},
+      ACCID = #{record.accid,jdbcType=VARCHAR},
+      DLVDATE = #{record.dlvdate,jdbcType=VARCHAR},
+      PMN02 = #{record.pmn02,jdbcType=DECIMAL},
+      PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      NUM = #{record.num,jdbcType=DECIMAL},
+      YSHL = #{record.yshl,jdbcType=DECIMAL},
+      WSHL = #{record.wshl,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Deliverylog">
+    update DELIVERYLOG
+    <set>
+      <if test="dlvid != null">
+        DLVID = #{dlvid,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        ACCID = #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlvdate != null">
+        DLVDATE = #{dlvdate,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        PMN02 = #{pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="pmn01 != null">
+        PMN01 = #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="yshl != null">
+        YSHL = #{yshl,jdbcType=DECIMAL},
+      </if>
+      <if test="wshl != null">
+        WSHL = #{wshl,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DELID = #{delid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Deliverylog">
+    update DELIVERYLOG
+    set DLVID = #{dlvid,jdbcType=VARCHAR},
+      ACCID = #{accid,jdbcType=VARCHAR},
+      DLVDATE = #{dlvdate,jdbcType=VARCHAR},
+      PMN02 = #{pmn02,jdbcType=DECIMAL},
+      PMN01 = #{pmn01,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=DECIMAL},
+      YSHL = #{yshl,jdbcType=DECIMAL},
+      WSHL = #{wshl,jdbcType=DECIMAL}
+    where DELID = #{delid,jdbcType=VARCHAR}
+  </update>
+</mapper>

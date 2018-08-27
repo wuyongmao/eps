@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.ChgreasonExtMapper"   >
+	 
+	<sql id="Column_List">
+		CHGID, REASON, REASONDESC, GS, STATUS
+	</sql>
+
+
+	<select id="findChgreasonByParam" resultType="com.chenyuantech.eps.bean.Chgreason" >
+		select   
+ 			 
+ 		<include refid="Column_List" />
+		from CHGREASON
+		<where>
+			<if test="chgreason.chgid != null and chgreason.chgid !=''   ">
+				and chgreason.chgid=#{chgreason.chgid}
+			</if>
+			<if test="chgreason.reason != null and chgreason.reason !=''   ">
+				and chgreason.reason=#{chgreason.reason}
+			</if>
+			<if test="chgreason.reasondesc != null and chgreason.reasondesc !=''   ">
+				and chgreason.reasondesc=#{chgreason.reasondesc}
+			</if>
+
+			<if test="chgreason.gs != null and chgreason.gs !=''   ">
+				and chgreason.gs=#{chgreason.gs}
+			</if>
+			<if test="chgreason.status != null and chgreason.status !=''   ">
+				and chgreason.status=#{chgreason.status}
+			</if>
+		</where>
+		 <if test="sort != null  ">
+             order by ${sort}   ${order}
+         </if>
+		
+	</select>
+
+
+</mapper>

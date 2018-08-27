@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tmpl</title>
+<script type="text/javascript" src="inc/easyui1.5/jquery.min.js"></script>
+<script type="text/javascript" src="inc/jquery.tmpl/1.4.2/jquery.tmpl.min.js"></script>
+
+</head>
+
+<body>
+<div id="div_demo"></div>
+    <input type="button" id="print" value="打印"/>
+
+<script id="demo" type="text/x-jquery-tmpl">
+    <div style="margin-bottom:10px;">
+    　　<span>${ID}</span>
+    　　<span style="margin-left:10px;">{{= Name}}</span>
+    　　<span style="margin-left:10px;">${Number(Num)+1}</span>
+    　　<span style="margin-left:10px;">${Status}</span>
+    </div></script>
+<script type="text/javascript">
+　　var users = [{ ID: 'think8848', Name: 'Joseph Chan', Num: '1', Status: 1 }, { ID: 'aCloud', Name: 'Mary Cheung', Num: '2'}];
+　　$("#demo").tmpl(users).appendTo('#div_demo');
+
+window.onload = function()
+{
+    var btnPrint = document.getElementById("print");//“打印”按钮
+    btnPrint.onclick = function()//为“打印”按钮添加点击事件
+    {
+        printTable();//打印表格
+    }
+}
+
+//打印表格
+function printTable()
+{
+    var tableToPrint = document.getElementById('div_demo');//将要被打印的表格
+    var newWin= window.open("");//新打开一个空窗口
+    newWin.document.write(tableToPrint.outerHTML);//将表格添加进新的窗口
+    newWin.document.close();//在IE浏览器中使用必须添加这一句
+    newWin.focus();//在IE浏览器中使用必须添加这一句
+
+    newWin.print();//打印
+    newWin.close();//关闭窗口
+}
+</script>
+</body>
+</html>

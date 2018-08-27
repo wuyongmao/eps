@@ -1,0 +1,10 @@
+//变更事由码
+	[ {
+		"field" : "REASON",
+		"title" : "变更理由",
+		"width" : 100
+	}, {
+		"field" : "CHGID",
+		"title" : "流水号",
+		"width" : 100
+	} ]

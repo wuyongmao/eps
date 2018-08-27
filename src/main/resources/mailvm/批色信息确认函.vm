@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批色信息确认函</title>
+</head>
+
+<body>
+
+<div>
+
+<div align="center"  style="height:90%">
+    <table width="1000px">
+        <tr>
+            <td>
+                <h2 align="center">批色信息确认函</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>致：<span style="color:#F00;">${username}</span></h3>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-indent:33px;">
+            	经我司检验，贵司提供的打样物品 ${ddstatus} ，烦请贵司知悉，谢谢！贵司可通过以下链接 <a href="https://www.chenyuantech.com/eps/">（此处为链接）</a>查看批色详情>。
+	<br>	(订单号码：${pmn01} ,项次:${pmn02} )
+            </td>
+        </tr>
+        <tr>
+            <td>
+          		<p>Thanks & Best Regards</p>
+                <p style="text-align:right;">
+                	中山辰元纺织科技有限公司<br />
+                	<span style="color:#F00;">${date}</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="height:10%">
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<meta charset="UTF-8">
+<script type="text/javascript" src="/eps/inc/easyui1.5/jquery.min.js"></script>
+<script type="text/javascript" src="/eps/inc/js/qr.js"></script>
+<script type="text/javascript"
+	src="/eps/inc/jquery.tmpl/1.4.2/jquery.tmpl.min.js"></script>
+<script language="javascript" src="/eps/inc/js/LodopFuncs.js"></script>
+<style type="text/css" id="ts">
+td {
+	border: 1px solid #777;
+	font-size: 9pt;
+}
+
+th {
+	border: 1px solid #777;
+	font-size: 10pt;
+	height: 18pt;
+}
+ 
+	
+
+table {
+
+                border-collapse: collapse; 
+                
+}
+
+tr {
+	border-bottom: 1px solid #FFF;
+}
+
+.trs .WXB01 {
+     width: 90pt;
+     height: 38pt;
+     text-align:left;
+}
+.trs .PMN041 {
+     width: 300pt;
+     height: 38pt;
+        word-break: break-word;
+      text-align:left;            
+}
+.trs .WXB06 {
+     width: 60pt;
+     text-align:left;
+     word-break: break-word; 
+}
+.trs .WXB09 {
+     width: 60pt;
+     text-align:right;
+     word-break: break-word; 
+}
+.trs .PMN07 {
+     width: 30pt;
+      text-align:left;
+     word-break: break-word; 
+}
+.trs .WXB05 {
+     width: 60pt;
+      text-align:right;
+     word-break: break-word;
+                
+}
+.trs .WXB02 {
+     width: 60pt;
+     text-align:right;
+     word-break: break-word;
+                
+}
+
+.trs .CQ {
+     width: 60pt;
+     text-align:right;
+     word-break: break-word;
+                
+}
+
+.trs .PMNUD05_DS {
+     width: 30pt;
+     text-align:left;
+     word-break: break-word;
+                
+}
+.parent{  
+   	width:100%;  
+}    
+.child{  
+	width:33.3%; 
+  	float:left;
+}
+
+
+</style>
+
+
+
+<form id="form1">
+
+
+	<table id="ta_con" cellspacing="0">
+		<tbody>
+			<tr class="trs">
+				<th  class="WXB01">单号/项次</th>
+				<th align="center" class="PMN041">材料名称</th>
+				<th class="WXB06">色号</th>
+				<th class="WXB09">数量</th>
+				<th class="PMN07">单位</th>
+				<th class="WXB05">缸号</th>
+				<th class="WXB02">箱数</th>
+				<th class="CQ">抽样</th>
+				<th class="PMNUD05_DS">季节</th>
+			</tr>
+			<tr class="trs">
+				<td class="WXB01">C379-1807090005 / 99</td>
+				<td class="PMN041">汉诺 75D/2 筒染 高弹纱 AAG4郁蓝
+					100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 095A黑色 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱
+					AAG5太阳红 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAJJ蓝本 100%涤纶 一般1条+汉诺 75D/2 筒染
+					高弹纱 AAFN酱紫 100%涤纶 一般1条</td>
+				<td class="WXB06">A1M7柠檬黄-SPG</td>
+				<td class="WXB09">4.6</td>
+				<td class="PMN07">GKG</td>
+				<td class="WXB05">YY4435</td>
+				<td class="WXB02">1</td>
+				<td class="CQ">1</td>
+
+				<td class="PMNUD05_DS">SS19</td>
+			</tr>
+			<tr class="trs">
+				<td class="WXB01">C379-1807090005 / 99</td>
+				<td   class="PMN041">汉诺 75D/2 筒染 高弹纱 AAG4郁蓝
+					100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 095A黑色 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱
+					AAG5太阳红 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAJJ蓝本 100%涤纶 一般1条+汉诺 75D/2 筒染
+					高弹纱 AAFN酱紫 100%涤纶 一般1条</td>
+				<td class="WXB06">A1M7柠檬黄-SPG</td>
+				<td class="WXB09">4.6</td>
+				<td class="PMN07">KG</td>
+				<td class="WXB05">YY4435</td>
+				<td class="WXB02">1</td>
+				<td class="CQ">1</td>
+
+				<td class="PMNUD05_DS">SS19</td>
+			</tr>
+			<tr class="trs">
+				<td class="WXB01">C379-1807090005 / 99</td>
+				<td   class="PMN041">汉诺 75D/2 筒染 高弹纱 AAG4郁蓝
+					100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 095A黑色 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱
+					AAG5太阳红 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAJJ蓝本 100%涤纶 一般1条+汉诺 75D/2 筒染
+					高弹纱 AAFN酱紫 100%涤纶 一般1条</td>
+				<td class="WXB06">A1M7柠檬黄-SPG</td>
+				<td class="WXB09">4.6</td>
+				<td class="PMN07">KG</td>
+				<td class="WXB05">YY4435</td>
+				<td class="WXB02">1</td>
+				<td class="CQ">1</td>
+
+				<td class="PMNUD05_DS">SS19</td>
+			</tr>
+			<tr class="trs">
+				<td class="WXB01">C379-1807090005 / 99</td>
+				<td   class="PMN041">汉 般1条+汉诺 75D/2 筒染 高弹纱
+					AAFN酱紫 100%涤纶 一般1条</td>
+				<td class="WXB06">A1M7柠檬黄-SPG</td>
+				<td class="WXB09">4.6</td>
+				<td class="PMN07">KG</td>
+				<td class="WXB05">FCY18070033</td>
+				<td class="WXB02">1</td>
+				<td class="CQ">1</td>
+
+				<td class="PMNUD05_DS">SS19</td>
+			</tr>
+			<tr class="trst">
+				<td class="WXB01">C379-1807090005 / 99</td>
+				<td   class="PMN041">汉 般1条+汉诺 75D/2 筒染 高弹纱
+					AAFN酱紫 100%涤纶 一般1条</td>
+				<td class="WXB06">A1M7柠檬黄-SPG</td>
+				<td class="WXB09">4.6</td>
+				<td class="PMN07">KG</td>
+				<td class="WXB05">FCY18070033</td>
+				<td class="WXB02">1</td>
+				<td class="CQ">1</td>
+
+				<td class="PMNUD05_DS">SS19</td>
+			</tr>
+			<tr class="trs">
+				<td>合计:</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="9">备注:</td>
+			</tr>
+		</tfoot>
+	</table>
+	 	<div class="parent">  
+     <div class="child">开单人：</div>   
+	<div class="child">送货人</div>   
+	<div class="child">客户签收</div>  </div> 
+	<div hidden="true">  aaaa </div>
+</form>
+
+</div>
+<script type="text/javascript">
+$(function() { 
+	var $t=$(".trs");  
+/* 	console.info($t ); 
+	alert($t.length);
+	$t.remove('.trs:first')
+	console.info($(".trs:has(td)").remove('.trs:first'));
+	$(".trs:has(.trs)").remove('.trs:first')
+	$(".trs:has(.trs)").remove('.trs:first')
+	$(".trs:has(.trs)").remove('.trs:first')
+	console. info($(".trs"));
+	*/
+	
+});
+
+<!--
+
+//-->
+</script>

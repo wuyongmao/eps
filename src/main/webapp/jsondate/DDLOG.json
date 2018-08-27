@@ -1,0 +1,34 @@
+//交期变更记录表
+	[ {
+		"field" : "REPLYDD",
+		"title" : "供应商回复交期",
+		"width" : 100
+	}, {
+		"field" : "LAUNCHTIME",
+		"title" : "发起时间",
+		"width" : 100
+	}, {
+		"field" : "CHGID",
+		"title" : "变更理由",
+		"width" : 100
+	}, {
+		"field" : "MEMO",
+		"title" : "备注",
+		"width" : 100
+	}, {
+		"field" : "DDID",
+		"title" : "流水号",
+		"width" : 100
+	}, {
+		"field" : "STATUS",
+		"title" : "状态(0:不同意;1:同意)",
+		"width" : 100
+	}, {
+		"field" : "REQUIREMENTDD",
+		"title" : "采购方需求交期",
+		"width" : 100
+	}, {
+		"field" : "ACCID",
+		"title" : "需求变更发起人",
+		"width" : 100
+	} ]

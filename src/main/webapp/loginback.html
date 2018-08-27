@@ -1,0 +1,190 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css"
+	href="./inc/easyui1.5/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="./inc/easyui1.5/themes/icon.css" />
+<script type="text/javascript" src="./inc/easyui1.5/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./inc/easyui1.5/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./inc/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="./inc/js/login.js"></script>
+<title>中山辰元电子采购系统</title>
+</head>
+<style>
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,
+	fieldset, input, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+body {
+	font-size: 12px;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+		"Times New Roman", serifbackground : #fff;
+	color: #2b2b2b;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+select, input, img {
+	vertical-align: middle;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table, td, tr, th {
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+fieldset, img {
+	border: 0;
+}
+
+.main {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background: url(images/login.png) no-repeat;
+	width: 772px;
+	height: 468px;
+	margin: -234px 0 0 -386px;
+}
+
+.input-box {
+	position: absolute;
+	top: 110px;
+	left: 410px;
+	color: #0952a1;
+}
+
+.input-box input {
+	border: 1px solid #7491b5;
+	width: 154px;
+	height: 28px;
+	background-color: #f5fafe;
+	padding-left: 4px;
+	line-height: 28px;
+}
+
+.input-box p {
+	line-height: 40px;
+}
+
+.input-box .check {
+	width: 14px;
+	height: 14px;
+	margin-left: 48px;
+}
+
+.input-box .record {
+	margin-left: 6px;
+}
+
+.input-box .link {
+	margin-top: 14px;
+	margin-left: 70px;
+}
+
+a {
+	height: 28px;
+	width: 72px;
+	display: inline-block;
+	color: #fff;
+	line-height: 28px;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.log {
+	background: url(images/log.png) no-repeat;
+	margin-right: 16px;
+	margin-left: 48px
+}
+
+.reset {
+	background: url(images/reset.png) no-repeat;
+	color: #6d6d6d;
+}
+
+.main-box .copy {
+	text-align: center;
+	margin-top: 8px;
+	color: #666666;
+}
+
+.text {
+	text-align: center;
+	color: #fff;
+	margin-top: 398px;
+	line-height: 24px;
+}
+</style>
+
+
+<script type="text/javascript">
+  
+
+	
+</script>
+<body style="background-color: #3987cf;">
+
+	<div class="main">
+		<div class="login-box">
+			<form action="/users/checklogin1" id="loginform" method="POST">
+
+				<div class="input-box">
+
+					<p>
+						用户名：<input type="text" name="ACC" id="ACC" class="ACC" />
+					</p>
+					<p>
+						<span style="padding-right: 12px;">密</span>码：<input
+							type="password" id="PWD" name='PWD' class="PWD" />
+					</p>
+					<p id="hidden" hidden="true">
+						<font color="#0000FF">账户或者密码错误</font>
+					</p>
+
+					<p>
+						<!-- <span class="record">登录环境</span> <select name="environment">
+							<option value="pro">正式区</option>
+							<option value="dev">测试区</option>
+						</select> -->
+						 
+						   <input type="checkbox" id="remember" class="check" /><span
+							class="record">记住登录名</span> 
+							 <span onclick="regist()"
+							style="color: #666666; text-decoration: underline; cursor: pointer"
+							class="record">注册新用户</span>
+					</p>
+
+
+					<a class="log" id="loginbtn">登&nbsp;录</a><a id="reset"
+						class="reset">重&nbsp;置</a>
+				</div>
+			</form>
+		</div>
+		<div class="text">
+			<p>Copyright @ 2017 中山辰元纺织科技有限公司. All Rights Reserved.</p>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

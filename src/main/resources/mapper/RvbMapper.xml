@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.RvbMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Rvb">
+    <result column="RVB01" jdbcType="VARCHAR" property="rvb01" />
+    <result column="RVB02" jdbcType="DECIMAL" property="rvb02" />
+    <result column="RVB03" jdbcType="DECIMAL" property="rvb03" />
+    <result column="RVB04" jdbcType="VARCHAR" property="rvb04" />
+    <result column="RVB07" jdbcType="DECIMAL" property="rvb07" />
+    <result column="PMN20" jdbcType="DECIMAL" property="pmn20" />
+    <result column="RVB29" jdbcType="DECIMAL" property="rvb29" />
+    <result column="PMN50_55" jdbcType="DECIMAL" property="pmn5055" />
+    <result column="RVB38" jdbcType="VARCHAR" property="rvb38" />
+    <result column="RVB30" jdbcType="DECIMAL" property="rvb30" />
+    <result column="JINDU" jdbcType="DECIMAL" property="jindu" />
+    <result column="RVB36" jdbcType="VARCHAR" property="rvb36" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="RVB39" jdbcType="CHAR" property="rvb39" />
+    <result column="RVV17" jdbcType="DECIMAL" property="rvv17" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    RVB01, RVB02, RVB03, RVB04, RVB07, PMN20, RVB29, PMN50_55, RVB38, RVB30, JINDU, RVB36, 
+    FLAG, RVB39, RVV17
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.RvbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from RVB
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.RvbExample">
+    delete from RVB
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Rvb">
+    insert into RVB (RVB01, RVB02, RVB03, 
+      RVB04, RVB07, PMN20, 
+      RVB29, PMN50_55, RVB38, 
+      RVB30, JINDU, RVB36, 
+      FLAG, RVB39, RVV17)
+    values (#{rvb01,jdbcType=VARCHAR}, #{rvb02,jdbcType=DECIMAL}, #{rvb03,jdbcType=DECIMAL}, 
+      #{rvb04,jdbcType=VARCHAR}, #{rvb07,jdbcType=DECIMAL}, #{pmn20,jdbcType=DECIMAL}, 
+      #{rvb29,jdbcType=DECIMAL}, #{pmn5055,jdbcType=DECIMAL}, #{rvb38,jdbcType=VARCHAR}, 
+      #{rvb30,jdbcType=DECIMAL}, #{jindu,jdbcType=DECIMAL}, #{rvb36,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=CHAR}, #{rvb39,jdbcType=CHAR}, #{rvv17,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Rvb">
+    insert into RVB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rvb01 != null">
+        RVB01,
+      </if>
+      <if test="rvb02 != null">
+        RVB02,
+      </if>
+      <if test="rvb03 != null">
+        RVB03,
+      </if>
+      <if test="rvb04 != null">
+        RVB04,
+      </if>
+      <if test="rvb07 != null">
+        RVB07,
+      </if>
+      <if test="pmn20 != null">
+        PMN20,
+      </if>
+      <if test="rvb29 != null">
+        RVB29,
+      </if>
+      <if test="pmn5055 != null">
+        PMN50_55,
+      </if>
+      <if test="rvb38 != null">
+        RVB38,
+      </if>
+      <if test="rvb30 != null">
+        RVB30,
+      </if>
+      <if test="jindu != null">
+        JINDU,
+      </if>
+      <if test="rvb36 != null">
+        RVB36,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="rvb39 != null">
+        RVB39,
+      </if>
+      <if test="rvv17 != null">
+        RVV17,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rvb01 != null">
+        #{rvb01,jdbcType=VARCHAR},
+      </if>
+      <if test="rvb02 != null">
+        #{rvb02,jdbcType=DECIMAL},
+      </if>
+      <if test="rvb03 != null">
+        #{rvb03,jdbcType=DECIMAL},
+      </if>
+      <if test="rvb04 != null">
+        #{rvb04,jdbcType=VARCHAR},
+      </if>
+      <if test="rvb07 != null">
+        #{rvb07,jdbcType=DECIMAL},
+      </if>
+      <if test="pmn20 != null">
+        #{pmn20,jdbcType=DECIMAL},
+      </if>
+      <if test="rvb29 != null">
+        #{rvb29,jdbcType=DECIMAL},
+      </if>
+      <if test="pmn5055 != null">
+        #{pmn5055,jdbcType=DECIMAL},
+      </if>
+      <if test="rvb38 != null">
+        #{rvb38,jdbcType=VARCHAR},
+      </if>
+      <if test="rvb30 != null">
+        #{rvb30,jdbcType=DECIMAL},
+      </if>
+      <if test="jindu != null">
+        #{jindu,jdbcType=DECIMAL},
+      </if>
+      <if test="rvb36 != null">
+        #{rvb36,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="rvb39 != null">
+        #{rvb39,jdbcType=CHAR},
+      </if>
+      <if test="rvv17 != null">
+        #{rvv17,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.RvbExample" resultType="java.lang.Long">
+    select count(*) from RVB
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update RVB
+    <set>
+      <if test="record.rvb01 != null">
+        RVB01 = #{record.rvb01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvb02 != null">
+        RVB02 = #{record.rvb02,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rvb03 != null">
+        RVB03 = #{record.rvb03,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rvb04 != null">
+        RVB04 = #{record.rvb04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvb07 != null">
+        RVB07 = #{record.rvb07,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pmn20 != null">
+        PMN20 = #{record.pmn20,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rvb29 != null">
+        RVB29 = #{record.rvb29,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pmn5055 != null">
+        PMN50_55 = #{record.pmn5055,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rvb38 != null">
+        RVB38 = #{record.rvb38,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rvb30 != null">
+        RVB30 = #{record.rvb30,jdbcType=DECIMAL},
+      </if>
+      <if test="record.jindu != null">
+        JINDU = #{record.jindu,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rvb36 != null">
+        RVB36 = #{record.rvb36,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        FLAG = #{record.flag,jdbcType=CHAR},
+      </if>
+      <if test="record.rvb39 != null">
+        RVB39 = #{record.rvb39,jdbcType=CHAR},
+      </if>
+      <if test="record.rvv17 != null">
+        RVV17 = #{record.rvv17,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update RVB
+    set RVB01 = #{record.rvb01,jdbcType=VARCHAR},
+      RVB02 = #{record.rvb02,jdbcType=DECIMAL},
+      RVB03 = #{record.rvb03,jdbcType=DECIMAL},
+      RVB04 = #{record.rvb04,jdbcType=VARCHAR},
+      RVB07 = #{record.rvb07,jdbcType=DECIMAL},
+      PMN20 = #{record.pmn20,jdbcType=DECIMAL},
+      RVB29 = #{record.rvb29,jdbcType=DECIMAL},
+      PMN50_55 = #{record.pmn5055,jdbcType=DECIMAL},
+      RVB38 = #{record.rvb38,jdbcType=VARCHAR},
+      RVB30 = #{record.rvb30,jdbcType=DECIMAL},
+      JINDU = #{record.jindu,jdbcType=DECIMAL},
+      RVB36 = #{record.rvb36,jdbcType=VARCHAR},
+      FLAG = #{record.flag,jdbcType=CHAR},
+      RVB39 = #{record.rvb39,jdbcType=CHAR},
+      RVV17 = #{record.rvv17,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

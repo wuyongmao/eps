@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="inc/easyui1.5/jquery.min.js"></script>
+<script type="text/javascript" src="inc/js/qr.js"></script>
+<script type="text/javascript"
+	src="inc/jquery.tmpl/1.4.2/jquery.tmpl.min.js"></script>
+<script language="javascript" src="LodopFuncs.js"></script>
+
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.tg .tg-g5xs {
+	font-size: 6px;
+	text-align: center;
+	vertical-align: top
+}
+
+.tg .tg-gzo9 {
+	font-size: 6px;
+	border-color: inherit;
+	text-align: center;
+	vertical-align: top
+}
+
+.tg .tg-aoj8 {
+	font-size: 6px;
+	border-color: inherit
+}
+
+.tg .tg-0brl {
+	font-size: 6px;
+	background-color: #9b9b9b;
+	border-color: inherit
+}
+
+.tg .tg-akyt {
+	font-size: 6px;
+	border-color: inherit;
+	vertical-align: top
+}
+
+.tg .tg-q19q {
+	font-size: 6px;
+	vertical-align: top
+}
+</style>
+
+</head>
+<input type="button" value="打印" onclick="prn1_preview()" />
+<div id="div_demo"></div>
+
+<body>
+	<script id="demo" type="text/x-jquery-tmpl">
+<div id="ttable" style="width:454px; height:454px; ">
+<table   border="1"  class="tg" style="table-layout: fixed; width: 100% font-size:16px">
+<colgroup>
+<col style="width: 180px">
+<col style="width: 120px">
+<col style="width: 60px">
+</colgroup>
+  <tr>
+     <td class="tg-0brl" colspan="2" rowspan="7"><div id="qr" ></div></td>
+  </tr>
+  <tr>
+   
+</table>
+</script>
+	<script type="text/javascript">
+		o = [ {
+			"WXB01" : "C302-1801060002",
+			"WXB02" : 3,
+			"WXB03" : "C368-1702280001",
+			"WXB04" : "21A",
+			"WXB05" : "QS0001201804140001",
+			"WXB06" : "0721511005",
+			"WXB07" : "2018-04-04",
+			"WXB08" : 37.8,
+			"WXB09" : 36.74,
+			"WXB10" : 40,
+			"PMMUD02" : "QS0001",
+			"PMN04" : "20111300396",
+			"IMA021" : "110CM(開口)*130CM(打8个透气孔)",
+			"PMN041" : "汉诺 75D/2 筒染 高弹纱 AAG4郁蓝 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 095A黑色 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAG5太阳红 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAJJ蓝本 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAFN酱紫 100%涤纶 一般1条",
+			"YS" : "段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/AAY9原绿/AAY9原绿/AAY5发灰/AAY5发灰",
+			"PMN07" : "KG",
+			"TC_RVBS16" : null,
+			"TC_RVBS17" : null
+		} ];
+
+		 
+		t = [ {
+			//"WXB01" : "C302-1801060002",
+			////"WXB02" : 3,
+			//"WXB03" : "C368-1702280001",
+			"W4" : "ZFN1705122A+1705106-SS18",
+			"W5" : "HZ0001201805070003",
+			//"WXB06" : "0721511005",
+			//	"WXB07" : "2018-04-04",
+			"W8" : 45,
+			"W9" : 40,
+			//"WXB10" : 40,
+			//	"PMMUD02" : "QS0001",
+			"P4" : "20121200273",
+			//"IMA021" : "110CM(開口)*130CM(打8个透气孔)",
+			//"PMN041" : "汉诺 75D/2 筒染 高弹纱 AAG4郁蓝 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 095A黑色 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAG5太阳红 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAJJ蓝本 100%涤纶 一般1条+汉诺 75D/2 筒染 高弹纱 AAFN酱紫 100%涤纶 一般1条",
+			//  "YS" : "段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/段染纱(AAY5发灰20CM+AAY9原绿20CM+AAYE光黄7CM+AAY8描红7CM)/AAY9原绿/AAY9原绿/AAY5发灰/AAY5发灰",
+			"P7" : "KG",
+			"SZS" : [
+				        { "SIZE":"10-10T","Q":"10","L":"10","R":"10" },  
+				        { "SIZE":"11-11T","Q":"10","L":"10","R":"10" },  
+				        { "SIZE":"12-12T","Q":"10","L":"10","R":"10" },  
+				        { "SIZE":"13-13T","Q":"10","L":"10","R":"10" }   
+			 ]
+			 
+		} ];
+		$("#demo").tmpl(o).appendTo('#div_demo');
+
+		var t = JSON.stringify(t);
+		var qrcode = new QRCode('qr', {
+			text : t,
+			width : 180,
+			height : 180,
+			colorDark : '#000000',
+			colorLight : '#ffffff',
+			correctLevel : QRCode.CorrectLevel.H
+		});
+
+		function prn1_preview() {
+			CreateOneFormPage();
+			LODOP.PREVIEW();
+		};
+
+		function CreateOneFormPage() {
+			LODOP.SET_PRINT_PAGESIZE(1, 1000, 1000, "");
+			LODOP.ADD_PRINT_HTM(20, 20, 160, 450, document.getElementById("div_demo").innerHTML);
+		};
+	</script>
+	</div>
+
+
+
+</body>
+</html>

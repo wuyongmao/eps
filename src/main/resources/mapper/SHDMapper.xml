@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.SHDMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.SHD">
+    <id column="SHD01" jdbcType="VARCHAR" property="SHD01" />
+    <result column="SHD02" jdbcType="VARCHAR" property="SHD02" />
+    <result column="SHD03" jdbcType="VARCHAR" property="SHD03" />
+    <result column="SHD04" jdbcType="VARCHAR" property="SHD04" />
+    <result column="SHD05" jdbcType="DATE" property="SHD05" />
+    <result column="SHD06" jdbcType="DECIMAL" property="SHD06" />
+    <result column="SHD07" jdbcType="VARCHAR" property="SHD07" />
+    <result column="SHD08" jdbcType="VARCHAR" property="SHD08" />
+    <result column="SHD09" jdbcType="VARCHAR" property="SHD09" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    SHD01, SHD02, SHD03, SHD04, SHD05, SHD06, SHD07, SHD08, SHD09
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.SHDExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SHD
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SHD
+    where SHD01 = #{SHD01,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SHD
+    where SHD01 = #{SHD01,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.SHDExample">
+    delete from SHD
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.SHD">
+    insert into SHD (SHD01, SHD02, SHD03, 
+      SHD04, SHD05, SHD06, SHD07, 
+      SHD08, SHD09)
+    values (#{SHD01,jdbcType=VARCHAR}, #{SHD02,jdbcType=VARCHAR}, #{SHD03,jdbcType=VARCHAR}, 
+      #{SHD04,jdbcType=VARCHAR}, #{SHD05,jdbcType=DATE}, #{SHD06,jdbcType=DECIMAL}, #{SHD07,jdbcType=VARCHAR}, 
+      #{SHD08,jdbcType=VARCHAR}, #{SHD09,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.SHD">
+    insert into SHD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="SHD01 != null">
+        SHD01,
+      </if>
+      <if test="SHD02 != null">
+        SHD02,
+      </if>
+      <if test="SHD03 != null">
+        SHD03,
+      </if>
+      <if test="SHD04 != null">
+        SHD04,
+      </if>
+      <if test="SHD05 != null">
+        SHD05,
+      </if>
+      <if test="SHD06 != null">
+        SHD06,
+      </if>
+      <if test="SHD07 != null">
+        SHD07,
+      </if>
+      <if test="SHD08 != null">
+        SHD08,
+      </if>
+      <if test="SHD09 != null">
+        SHD09,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="SHD01 != null">
+        #{SHD01,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD02 != null">
+        #{SHD02,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD03 != null">
+        #{SHD03,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD04 != null">
+        #{SHD04,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD05 != null">
+        #{SHD05,jdbcType=DATE},
+      </if>
+      <if test="SHD06 != null">
+        #{SHD06,jdbcType=DECIMAL},
+      </if>
+      <if test="SHD07 != null">
+        #{SHD07,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD08 != null">
+        #{SHD08,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD09 != null">
+        #{SHD09,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.SHDExample" resultType="java.lang.Long">
+    select count(*) from SHD
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update SHD
+    <set>
+      <if test="record.SHD01 != null">
+        SHD01 = #{record.SHD01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD02 != null">
+        SHD02 = #{record.SHD02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD03 != null">
+        SHD03 = #{record.SHD03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD04 != null">
+        SHD04 = #{record.SHD04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD05 != null">
+        SHD05 = #{record.SHD05,jdbcType=DATE},
+      </if>
+      <if test="record.SHD06 != null">
+        SHD06 = #{record.SHD06,jdbcType=DECIMAL},
+      </if>
+      <if test="record.SHD07 != null">
+        SHD07 = #{record.SHD07,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD08 != null">
+        SHD08 = #{record.SHD08,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SHD09 != null">
+        SHD09 = #{record.SHD09,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update SHD
+    set SHD01 = #{record.SHD01,jdbcType=VARCHAR},
+      SHD02 = #{record.SHD02,jdbcType=VARCHAR},
+      SHD03 = #{record.SHD03,jdbcType=VARCHAR},
+      SHD04 = #{record.SHD04,jdbcType=VARCHAR},
+      SHD05 = #{record.SHD05,jdbcType=DATE},
+      SHD06 = #{record.SHD06,jdbcType=DECIMAL},
+      SHD07 = #{record.SHD07,jdbcType=VARCHAR},
+      SHD08 = #{record.SHD08,jdbcType=VARCHAR},
+      SHD09 = #{record.SHD09,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.SHD">
+    update SHD
+    <set>
+      <if test="SHD02 != null">
+        SHD02 = #{SHD02,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD03 != null">
+        SHD03 = #{SHD03,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD04 != null">
+        SHD04 = #{SHD04,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD05 != null">
+        SHD05 = #{SHD05,jdbcType=DATE},
+      </if>
+      <if test="SHD06 != null">
+        SHD06 = #{SHD06,jdbcType=DECIMAL},
+      </if>
+      <if test="SHD07 != null">
+        SHD07 = #{SHD07,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD08 != null">
+        SHD08 = #{SHD08,jdbcType=VARCHAR},
+      </if>
+      <if test="SHD09 != null">
+        SHD09 = #{SHD09,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SHD01 = #{SHD01,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.SHD">
+    update SHD
+    set SHD02 = #{SHD02,jdbcType=VARCHAR},
+      SHD03 = #{SHD03,jdbcType=VARCHAR},
+      SHD04 = #{SHD04,jdbcType=VARCHAR},
+      SHD05 = #{SHD05,jdbcType=DATE},
+      SHD06 = #{SHD06,jdbcType=DECIMAL},
+      SHD07 = #{SHD07,jdbcType=VARCHAR},
+      SHD08 = #{SHD08,jdbcType=VARCHAR},
+      SHD09 = #{SHD09,jdbcType=VARCHAR}
+    where SHD01 = #{SHD01,jdbcType=VARCHAR}
+  </update>
+</mapper>

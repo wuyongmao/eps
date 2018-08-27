@@ -1,0 +1,38 @@
+//批色历史记录档
+	[ {
+		"field" : "QCRESULT",
+		"title" : "品检检验结果",
+		"width" : 100
+	}, {
+		"field" : "MEMO",
+		"title" : "备注",
+		"width" : 100
+	}, {
+		"field" : "CHKTIME",
+		"title" : "检验时间",
+		"width" : 100
+	}, {
+		"field" : "SEQ",
+		"title" : "检验项次",
+		"width" : 100
+	}, {
+		"field" : "CHKID",
+		"title" : "流水号",
+		"width" : 100
+	}, {
+		"field" : "RDRESULT",
+		"title" : "确发检验结果",
+		"width" : 100
+	}, {
+		"field" : "PMN01",
+		"title" : "采购单号",
+		"width" : 100
+	}, {
+		"field" : "PMN02",
+		"title" : "采购项次",
+		"width" : 100
+	}, {
+		"field" : "ATTR",
+		"title" : "附件",
+		"width" : 100
+	} ]

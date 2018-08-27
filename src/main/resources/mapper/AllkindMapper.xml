@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.AllkindMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Allkind">
+    <id column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="KINDID" jdbcType="DECIMAL" property="kindid" />
+    <result column="KINDPID" jdbcType="VARCHAR" property="kindpid" />
+    <result column="KINDNO" jdbcType="VARCHAR" property="kindno" />
+    <result column="KINDNAME" jdbcType="VARCHAR" property="kindname" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UUID, KINDID, KINDPID, KINDNO, KINDNAME, STATUS, BZ
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.AllkindExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ALLKIND
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ALLKIND
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ALLKIND
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.AllkindExample">
+    delete from ALLKIND
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Allkind">
+    <selectKey keyProperty="uuid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into ALLKIND (UUID, KINDID, KINDPID, 
+      KINDNO, KINDNAME, STATUS, 
+      BZ)
+    values (#{uuid,jdbcType=VARCHAR}, #{kindid,jdbcType=DECIMAL}, #{kindpid,jdbcType=VARCHAR}, 
+      #{kindno,jdbcType=VARCHAR}, #{kindname,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Allkind">
+    <selectKey keyProperty="uuid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into ALLKIND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      UUID,
+      <if test="kindid != null">
+        KINDID,
+      </if>
+      <if test="kindpid != null">
+        KINDPID,
+      </if>
+      <if test="kindno != null">
+        KINDNO,
+      </if>
+      <if test="kindname != null">
+        KINDNAME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{uuid,jdbcType=VARCHAR},
+      <if test="kindid != null">
+        #{kindid,jdbcType=DECIMAL},
+      </if>
+      <if test="kindpid != null">
+        #{kindpid,jdbcType=VARCHAR},
+      </if>
+      <if test="kindno != null">
+        #{kindno,jdbcType=VARCHAR},
+      </if>
+      <if test="kindname != null">
+        #{kindname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.AllkindExample" resultType="java.lang.Long">
+    select count(*) from ALLKIND
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ALLKIND
+    <set>
+      <if test="record.uuid != null">
+        UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kindid != null">
+        KINDID = #{record.kindid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.kindpid != null">
+        KINDPID = #{record.kindpid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kindno != null">
+        KINDNO = #{record.kindno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kindname != null">
+        KINDNAME = #{record.kindname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null">
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ALLKIND
+    set UUID = #{record.uuid,jdbcType=VARCHAR},
+      KINDID = #{record.kindid,jdbcType=DECIMAL},
+      KINDPID = #{record.kindpid,jdbcType=VARCHAR},
+      KINDNO = #{record.kindno,jdbcType=VARCHAR},
+      KINDNAME = #{record.kindname,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Allkind">
+    update ALLKIND
+    <set>
+      <if test="kindid != null">
+        KINDID = #{kindid,jdbcType=DECIMAL},
+      </if>
+      <if test="kindpid != null">
+        KINDPID = #{kindpid,jdbcType=VARCHAR},
+      </if>
+      <if test="kindno != null">
+        KINDNO = #{kindno,jdbcType=VARCHAR},
+      </if>
+      <if test="kindname != null">
+        KINDNAME = #{kindname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Allkind">
+    update ALLKIND
+    set KINDID = #{kindid,jdbcType=DECIMAL},
+      KINDPID = #{kindpid,jdbcType=VARCHAR},
+      KINDNO = #{kindno,jdbcType=VARCHAR},
+      KINDNAME = #{kindname,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

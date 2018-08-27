@@ -1,0 +1,43 @@
+<Request>
+	<Access>
+		<Authentication user="tiptop" password="tiptop" />
+		<Connection application="ERP" source="192.168.0.8" />
+		<Organization name="T2" />
+		<Locale language="zh_cn" />
+	</Access>
+	<RequestContent>
+		<Parameter>
+			<Record>
+				<Field name="reqCode" value="R1000" />
+			</Record>
+		</Parameter>
+		<Document>
+		    <RecordSet id="1">
+				<Master name="order_info">
+					<Record>
+ 						<Field name="orderType" value="7" />
+ 						<Field name="orderNum" value="1000001" />
+ 						<Field name="orderItem" value="01" />
+ 						<Field name="matCode" value="MaXXXXXXXX" />
+ 						<Field name="plantCode" value="T2" />
+ 						<Field name="locCode" value="901" />
+ 						<Field name="matQty" value="50" />
+ 						<Field name="matUnit" value="PR" />
+ 						<Field name="batchNum" value="0216112501" />
+ 						<Field name="speStkFlag" value="E" />
+ 						<Field name="speStkNum" value="3000078960000190" />
+ 						<Field name="boxCodeArr" value="201712011202101,201712011202102" /> 
+					</Record>
+				</Master>
+				<Detail name="size_info">
+					<Record>
+  						<Field name="size" value="6T" />
+  						<Field name="sizeQty" value="10" />
+  						<Field name="sizeLeftQty" value="10" />
+  						<Field name="sizeRightQty" value="10" /> 
+					</Record>
+				</Detail>
+			</RecordSet>
+		</Document>
+	</RequestContent>
+</Request>

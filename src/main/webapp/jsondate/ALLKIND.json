@@ -1,0 +1,27 @@
+//公用代码表
+
+[ {
+		"field" : "KINDNO",
+		"title" : "参数代号",
+		"width" : 100
+	}, {
+		"field" : "KINDNAME",
+		"title" : "参数名称",
+		"width" : 100
+	}, {
+		"field" : "BZ",
+		"title" : "备注",
+		"width" : 100
+	}, {
+		"field" : "KINDID",
+		"title" : "流水号",
+		"width" : 100
+	}, {
+		"field" : "KINDPID",
+		"title" : "流水号(上层代号)",
+		"width" : 100
+	}, {
+		"field" : "STATUS",
+		"title" : "状态(Y,N)",
+		"width" : 100
+	} ]

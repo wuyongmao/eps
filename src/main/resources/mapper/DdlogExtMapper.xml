@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.DdlogExtMapper">
+
+
+	<select id="selectPMCByPMN01PMN02" resultType="java.util.LinkedHashMap">
+
+
+		select DDLOG.DDID as "ddid",
+		DDLOG.REQUIREMENTDD as "requirementdd", DDLOG.REPLYDD as "replydd",
+		DDLOG.STATUS as "status",
+		DDLOG.ACCID as "accid", DDLOG.LAUNCHTIME as "launchtime",
+		DDLOG.CHGID as "chgid", DDLOG.MEMO as "memo", DDLOG.PMN01 as "pmn01",
+		DDLOG.PMN02 as "pmn02", users.name as "name"
+		, CHGREASON.REASONDESC as "reasondesc" from DDLOG left join
+		CHGREASON on
+		DDLOG.CHGID=CHGREASON.CHGID left join users on
+		users.accid =DDLOG.Accid
+		where DDLOG.PMN01= '${PMN01}' and
+		DDLOG.PMN02 = ${PMN02}
+         order by DDLOG.LAUNCHTIME
+	</select>
+
+
+
+
+
+	<select id="getddlogsendmail" resultType="java.util.LinkedHashMap">
+
+with ddlog_t as
+ (select max(ddlog.launchtime) launchtime, ddlog.pmn01, ddlog.pmn02
+    from ddlog
+   group by ddlog.pmn01, ddlog.pmn02)
+
+select ddlog.ddid,
+       ddlog.requirementdd,
+       ddlog.replydd,
+       ddlog.status,
+       ddlog.accid,
+       ddlog.launchtime,
+       ddlog.chgid,
+       ddlog.memo,
+       ddlog.pmn01,
+       ddlog.pmn02,
+       pmm.PMMUD02,
+       pmm.PMC03,
+       to_char(sysdate,'yyyy-mm-dd')  now
+  from ddlog, ddlog_t,pmm
+ where 
+ pmm.pmm01=ddlog.pmn01 and 
+ (ddlog.pmn01 = ddlog_t.pmn01 and ddlog.pmn02 = ddlog_t.pmn02 and
+       ddlog.launchtime = ddlog_t.launchtime)                           
+   and (ddlog.replydd is null or ddlog.replydd = '' and ddlog.status = 2)   
+   and CEIL(( sysdate - TO_DATE(ddlog.launchtime , 'YYYY-MM-DD HH24-MI-SS')) * 24) >48
+ order by ddlog.pmn01, ddlog.pmn02
+
+
+
+
+
+
+
+</select>
+
+
+
+
+
+<update id="updateReplydd"   >
+ 
+update ddlog  set ddlog.replydd='${REPLYDD}' ,MEMO='两天内未回复系统已默认为需求交期' ,ddlog.status='1'  where  ddlog.ddid='${DDID}'
+
+</update >
+
+
+
+
+
+</mapper>

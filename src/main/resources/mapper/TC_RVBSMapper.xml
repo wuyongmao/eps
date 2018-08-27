@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.TC_RVBSMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.TC_RVBS">
+    <result column="TC_RVBS01" jdbcType="VARCHAR" property="TC_RVBS01" />
+    <result column="TC_RVBS02" jdbcType="DECIMAL" property="TC_RVBS02" />
+    <result column="TC_RVBS03" jdbcType="VARCHAR" property="TC_RVBS03" />
+    <result column="TC_RVBS16" jdbcType="DECIMAL" property="TC_RVBS16" />
+    <result column="TC_RVBS17" jdbcType="DECIMAL" property="TC_RVBS17" />
+    <result column="TC_RVBS04" jdbcType="DECIMAL" property="TC_RVBS04" />
+    <result column="TC_RVBS06" jdbcType="VARCHAR" property="TC_RVBS06" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    TC_RVBS01, TC_RVBS02, TC_RVBS03, TC_RVBS16, TC_RVBS17, TC_RVBS04, TC_RVBS06
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.TC_RVBSExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from TC_RVBS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.TC_RVBSExample">
+    delete from TC_RVBS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.TC_RVBS">
+    insert into TC_RVBS (TC_RVBS01, TC_RVBS02, TC_RVBS03, 
+      TC_RVBS16, TC_RVBS17, TC_RVBS04, 
+      TC_RVBS06)
+    values (#{TC_RVBS01,jdbcType=VARCHAR}, #{TC_RVBS02,jdbcType=DECIMAL}, #{TC_RVBS03,jdbcType=VARCHAR}, 
+      #{TC_RVBS16,jdbcType=DECIMAL}, #{TC_RVBS17,jdbcType=DECIMAL}, #{TC_RVBS04,jdbcType=DECIMAL}, 
+      #{TC_RVBS06,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.TC_RVBS">
+    insert into TC_RVBS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="TC_RVBS01 != null">
+        TC_RVBS01,
+      </if>
+      <if test="TC_RVBS02 != null">
+        TC_RVBS02,
+      </if>
+      <if test="TC_RVBS03 != null">
+        TC_RVBS03,
+      </if>
+      <if test="TC_RVBS16 != null">
+        TC_RVBS16,
+      </if>
+      <if test="TC_RVBS17 != null">
+        TC_RVBS17,
+      </if>
+      <if test="TC_RVBS04 != null">
+        TC_RVBS04,
+      </if>
+      <if test="TC_RVBS06 != null">
+        TC_RVBS06,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="TC_RVBS01 != null">
+        #{TC_RVBS01,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_RVBS02 != null">
+        #{TC_RVBS02,jdbcType=DECIMAL},
+      </if>
+      <if test="TC_RVBS03 != null">
+        #{TC_RVBS03,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_RVBS16 != null">
+        #{TC_RVBS16,jdbcType=DECIMAL},
+      </if>
+      <if test="TC_RVBS17 != null">
+        #{TC_RVBS17,jdbcType=DECIMAL},
+      </if>
+      <if test="TC_RVBS04 != null">
+        #{TC_RVBS04,jdbcType=DECIMAL},
+      </if>
+      <if test="TC_RVBS06 != null">
+        #{TC_RVBS06,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.TC_RVBSExample" resultType="java.lang.Long">
+    select count(*) from TC_RVBS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update TC_RVBS
+    <set>
+      <if test="record.TC_RVBS01 != null">
+        TC_RVBS01 = #{record.TC_RVBS01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TC_RVBS02 != null">
+        TC_RVBS02 = #{record.TC_RVBS02,jdbcType=DECIMAL},
+      </if>
+      <if test="record.TC_RVBS03 != null">
+        TC_RVBS03 = #{record.TC_RVBS03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TC_RVBS16 != null">
+        TC_RVBS16 = #{record.TC_RVBS16,jdbcType=DECIMAL},
+      </if>
+      <if test="record.TC_RVBS17 != null">
+        TC_RVBS17 = #{record.TC_RVBS17,jdbcType=DECIMAL},
+      </if>
+      <if test="record.TC_RVBS04 != null">
+        TC_RVBS04 = #{record.TC_RVBS04,jdbcType=DECIMAL},
+      </if>
+      <if test="record.TC_RVBS06 != null">
+        TC_RVBS06 = #{record.TC_RVBS06,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update TC_RVBS
+    set TC_RVBS01 = #{record.TC_RVBS01,jdbcType=VARCHAR},
+      TC_RVBS02 = #{record.TC_RVBS02,jdbcType=DECIMAL},
+      TC_RVBS03 = #{record.TC_RVBS03,jdbcType=VARCHAR},
+      TC_RVBS16 = #{record.TC_RVBS16,jdbcType=DECIMAL},
+      TC_RVBS17 = #{record.TC_RVBS17,jdbcType=DECIMAL},
+      TC_RVBS04 = #{record.TC_RVBS04,jdbcType=DECIMAL},
+      TC_RVBS06 = #{record.TC_RVBS06,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

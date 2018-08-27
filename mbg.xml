@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 全局配置 -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		 <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />  
+<!-- 		<plugin type="com.chenyuantech.eps.utils.SerializablePlugin" />
+ -->		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+ 		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 配置数据库连接 <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/ssm_crud" 
+			userId="root" password="root"> </jdbcConnection> -->  
+		
+		 
+<!---->
+		<jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.60.26:1521:ORCL" userId="eps"
+			password="eps#cy6026">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定javaBean生成的位置 -->
+		<javaModelGenerator targetPackage="com.chenyuantech.eps.bean"
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!--指定sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 指定dao接口生成的位置，mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.chenyuantech.eps.dao" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+  	
+	 	
+	 	<table tableName="SHD" domainObjectName="SHD">
+			 <property name="useActualColumnNames" value="true" />
+		</table>	   
+	  
+<!-- 
+ 	       <table tableName="WXBSIZE"  domainObjectName="WXBSIZE">
+			<property name="useActualColumnNames" value="true" />
+	   </table>	
+      <table tableName="CYB"  domainObjectName="CYB">
+			<property name="useActualColumnNames" value="true" />
+	   </table>	
+        <table tableName="AQC"  domainObjectName="AQC">
+			<property name="useActualColumnNames" value="true" />
+	   </table>		
+<table tableName="WXBTMP" domainObjectName="WXBTMP">
+	 	<property name="useActualColumnNames" value="true"/>
+			<generatedKey column="WID" sqlStatement="select sys_guid() from dual" />
+		     
+		</table>
+  <table tableName="PMN"  domainObjectName="PMN">
+				<property name="useActualColumnNames" value="true" />
+		</table>
+  <table tableName="Rvb" domainObjectName="Rvb"  />
+		 	<table tableName="PMM"  domainObjectName="PMM">
+		<property name="useActualColumnNames" value="true" />
+		</table>
+  
+     <table tableName="USERS" domainObjectName="USERS">
+		 	 				<property name="useActualColumnNames" value="true" />
+		 	 
+			<generatedKey column="ACCID" sqlStatement="select sys_guid() from dual" />
+	   
+	   </table>
+	   
+  
+  <table tableName="DELIVERYLOG" domainObjectName="Deliverylog">
+			<generatedKey column="DELID" sqlStatement="select sys_guid() from dual" />
+
+		</table>
+		<table tableName="CHGREASON" domainObjectName="Chgreason">
+			<generatedKey column="CHGID" sqlStatement="select sys_guid() from dual" />
+		</table>
+		<table tableName="DDLOG" domainObjectName="Ddlog">
+			<generatedKey column="DDID" sqlStatement="select sys_guid() from dual" />
+		</table>
+		<table tableName="RIGHTS" domainObjectName="Rights">
+			<generatedKey column="RIGHTSID" sqlStatement="select sys_guid() from dual" />
+		</table>
+
+		<table tableName="ALLKIND" domainObjectName="Allkind">
+			<generatedKey column="UUID" sqlStatement="select sys_guid() from dual" />
+		</table>
+		<table tableName="COLORCHKLOG" domainObjectName="Colorchklog">
+			<generatedKey column="CHKID" sqlStatement="select sys_guid() from dual" />
+
+		</table>
+
+ -->
+
+
+
+		<!-- table指定每个表的生成策略 <table tableName="user" domainObjectName="User"></table> 
+			<table tableName="symenu" domainObjectName="Symenu"></table> <table tableName="syportal" 
+			domainObjectName="Syportal"></table> <table tableName="syresources" domainObjectName="Syresources"></table> 
+			<table tableName="syrole" domainObjectName="Syrole"></table> <table tableName="syrole_syresources" 
+			domainObjectName="Syrole_syresources"></table> <table tableName="syuser" 
+			domainObjectName="Syuser"></table> <table tableName="syuser_syrole" domainObjectName="Syuser_syrole"></table> -->
+
+
+
+
+	</context>
+</generatorConfiguration>

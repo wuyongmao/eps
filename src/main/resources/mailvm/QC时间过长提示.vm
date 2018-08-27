@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>QC时间过长提示</title>
+</head>
+
+<body>
+
+<div>
+
+<div align="center"  style="height:90%">
+    <table width="1000px">
+        <tr>
+            <td>
+                <h2 align="center">QC时间过长提示</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Dear<span style="color:#F00;">${NAME}</span></h3>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-indent:33px;">
+            	(订单号码：${RVB04},项次:${RVB03} )QC时间已达 ${QCSJ} 小时，请知悉 ！<a href="https://www.chenyuantech.com/eps/">（此处为链接）</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+          		<p>Thanks & Best Regards</p>
+                <p style="text-align:right;">
+                	中山辰元纺织科技有限公司<br />
+                	<span style="color:#F00;">${NOW}</span>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="height:10%">
+
+
+</div>
+
+
+</div>
+
+</body>
+</html>

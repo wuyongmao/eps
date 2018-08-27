@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.PMMMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.PMM">
+    <id column="PMM01" jdbcType="VARCHAR" property="PMM01" />
+    <result column="TA_PMM05" jdbcType="VARCHAR" property="TA_PMM05" />
+    <result column="PMM03" jdbcType="VARCHAR" property="PMM03" />
+    <result column="PMMUD02" jdbcType="VARCHAR" property="PMMUD02" />
+    <result column="PMC03" jdbcType="VARCHAR" property="PMC03" />
+    <result column="PMM909" jdbcType="VARCHAR" property="PMM909" />
+    <result column="PMM02" jdbcType="VARCHAR" property="PMM02" />
+    <result column="PMM07" jdbcType="VARCHAR" property="PMM07" />
+    <result column="PMM13" jdbcType="VARCHAR" property="PMM13" />
+    <result column="GEM02" jdbcType="VARCHAR" property="GEM02" />
+    <result column="PMMCOND" jdbcType="VARCHAR" property="PMMCOND" />
+    <result column="PMM04" jdbcType="VARCHAR" property="PMM04" />
+    <result column="PMMCONU" jdbcType="VARCHAR" property="PMMCONU" />
+    <result column="GEN02" jdbcType="VARCHAR" property="GEN02" />
+    <result column="PMM12" jdbcType="VARCHAR" property="PMM12" />
+    <result column="GEN021" jdbcType="VARCHAR" property="GEN021" />
+    <result column="TA_PMM06" jdbcType="VARCHAR" property="TA_PMM06" />
+    <result column="TC_ZZD02" jdbcType="VARCHAR" property="TC_ZZD02" />
+    <result column="PMMUSER" jdbcType="VARCHAR" property="PMMUSER" />
+    <result column="PMMMODU" jdbcType="VARCHAR" property="PMMMODU" />
+    <result column="PMMGRUP" jdbcType="VARCHAR" property="PMMGRUP" />
+    <result column="PMMDATE" jdbcType="VARCHAR" property="PMMDATE" />
+    <result column="PMMORIU" jdbcType="VARCHAR" property="PMMORIU" />
+    <result column="TA_PMM10" jdbcType="VARCHAR" property="TA_PMM10" />
+    <result column="PMMORIG" jdbcType="VARCHAR" property="PMMORIG" />
+    <result column="PMMUD13" jdbcType="VARCHAR" property="PMMUD13" />
+    <result column="PMM18" jdbcType="VARCHAR" property="PMM18" />
+    <result column="PMM25" jdbcType="VARCHAR" property="PMM25" />
+    <result column="TC_TQA03" jdbcType="VARCHAR" property="TC_TQA03" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    PMM01, TA_PMM05, PMM03, PMMUD02, PMC03, PMM909, PMM02, PMM07, PMM13, GEM02, PMMCOND, 
+    PMM04, PMMCONU, GEN02, PMM12, GEN021, TA_PMM06, TC_ZZD02, PMMUSER, PMMMODU, PMMGRUP, 
+    PMMDATE, PMMORIU, TA_PMM10, PMMORIG, PMMUD13, PMM18, PMM25, TC_TQA03
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.PMMExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PMM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PMM
+    where PMM01 = #{PMM01,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PMM
+    where PMM01 = #{PMM01,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.PMMExample">
+    delete from PMM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.PMM">
+    insert into PMM (PMM01, TA_PMM05, PMM03, 
+      PMMUD02, PMC03, PMM909, 
+      PMM02, PMM07, PMM13, 
+      GEM02, PMMCOND, PMM04, 
+      PMMCONU, GEN02, PMM12, 
+      GEN021, TA_PMM06, TC_ZZD02, 
+      PMMUSER, PMMMODU, PMMGRUP, 
+      PMMDATE, PMMORIU, TA_PMM10, 
+      PMMORIG, PMMUD13, PMM18, 
+      PMM25, TC_TQA03)
+    values (#{PMM01,jdbcType=VARCHAR}, #{TA_PMM05,jdbcType=VARCHAR}, #{PMM03,jdbcType=VARCHAR}, 
+      #{PMMUD02,jdbcType=VARCHAR}, #{PMC03,jdbcType=VARCHAR}, #{PMM909,jdbcType=VARCHAR}, 
+      #{PMM02,jdbcType=VARCHAR}, #{PMM07,jdbcType=VARCHAR}, #{PMM13,jdbcType=VARCHAR}, 
+      #{GEM02,jdbcType=VARCHAR}, #{PMMCOND,jdbcType=VARCHAR}, #{PMM04,jdbcType=VARCHAR}, 
+      #{PMMCONU,jdbcType=VARCHAR}, #{GEN02,jdbcType=VARCHAR}, #{PMM12,jdbcType=VARCHAR}, 
+      #{GEN021,jdbcType=VARCHAR}, #{TA_PMM06,jdbcType=VARCHAR}, #{TC_ZZD02,jdbcType=VARCHAR}, 
+      #{PMMUSER,jdbcType=VARCHAR}, #{PMMMODU,jdbcType=VARCHAR}, #{PMMGRUP,jdbcType=VARCHAR}, 
+      #{PMMDATE,jdbcType=VARCHAR}, #{PMMORIU,jdbcType=VARCHAR}, #{TA_PMM10,jdbcType=VARCHAR}, 
+      #{PMMORIG,jdbcType=VARCHAR}, #{PMMUD13,jdbcType=VARCHAR}, #{PMM18,jdbcType=VARCHAR}, 
+      #{PMM25,jdbcType=VARCHAR}, #{TC_TQA03,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.PMM">
+    insert into PMM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="PMM01 != null">
+        PMM01,
+      </if>
+      <if test="TA_PMM05 != null">
+        TA_PMM05,
+      </if>
+      <if test="PMM03 != null">
+        PMM03,
+      </if>
+      <if test="PMMUD02 != null">
+        PMMUD02,
+      </if>
+      <if test="PMC03 != null">
+        PMC03,
+      </if>
+      <if test="PMM909 != null">
+        PMM909,
+      </if>
+      <if test="PMM02 != null">
+        PMM02,
+      </if>
+      <if test="PMM07 != null">
+        PMM07,
+      </if>
+      <if test="PMM13 != null">
+        PMM13,
+      </if>
+      <if test="GEM02 != null">
+        GEM02,
+      </if>
+      <if test="PMMCOND != null">
+        PMMCOND,
+      </if>
+      <if test="PMM04 != null">
+        PMM04,
+      </if>
+      <if test="PMMCONU != null">
+        PMMCONU,
+      </if>
+      <if test="GEN02 != null">
+        GEN02,
+      </if>
+      <if test="PMM12 != null">
+        PMM12,
+      </if>
+      <if test="GEN021 != null">
+        GEN021,
+      </if>
+      <if test="TA_PMM06 != null">
+        TA_PMM06,
+      </if>
+      <if test="TC_ZZD02 != null">
+        TC_ZZD02,
+      </if>
+      <if test="PMMUSER != null">
+        PMMUSER,
+      </if>
+      <if test="PMMMODU != null">
+        PMMMODU,
+      </if>
+      <if test="PMMGRUP != null">
+        PMMGRUP,
+      </if>
+      <if test="PMMDATE != null">
+        PMMDATE,
+      </if>
+      <if test="PMMORIU != null">
+        PMMORIU,
+      </if>
+      <if test="TA_PMM10 != null">
+        TA_PMM10,
+      </if>
+      <if test="PMMORIG != null">
+        PMMORIG,
+      </if>
+      <if test="PMMUD13 != null">
+        PMMUD13,
+      </if>
+      <if test="PMM18 != null">
+        PMM18,
+      </if>
+      <if test="PMM25 != null">
+        PMM25,
+      </if>
+      <if test="TC_TQA03 != null">
+        TC_TQA03,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="PMM01 != null">
+        #{PMM01,jdbcType=VARCHAR},
+      </if>
+      <if test="TA_PMM05 != null">
+        #{TA_PMM05,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM03 != null">
+        #{PMM03,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD02 != null">
+        #{PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC03 != null">
+        #{PMC03,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM909 != null">
+        #{PMM909,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM02 != null">
+        #{PMM02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM07 != null">
+        #{PMM07,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM13 != null">
+        #{PMM13,jdbcType=VARCHAR},
+      </if>
+      <if test="GEM02 != null">
+        #{GEM02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMCOND != null">
+        #{PMMCOND,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM04 != null">
+        #{PMM04,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMCONU != null">
+        #{PMMCONU,jdbcType=VARCHAR},
+      </if>
+      <if test="GEN02 != null">
+        #{GEN02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM12 != null">
+        #{PMM12,jdbcType=VARCHAR},
+      </if>
+      <if test="GEN021 != null">
+        #{GEN021,jdbcType=VARCHAR},
+      </if>
+      <if test="TA_PMM06 != null">
+        #{TA_PMM06,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_ZZD02 != null">
+        #{TC_ZZD02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUSER != null">
+        #{PMMUSER,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMMODU != null">
+        #{PMMMODU,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMGRUP != null">
+        #{PMMGRUP,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMDATE != null">
+        #{PMMDATE,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMORIU != null">
+        #{PMMORIU,jdbcType=VARCHAR},
+      </if>
+      <if test="TA_PMM10 != null">
+        #{TA_PMM10,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMORIG != null">
+        #{PMMORIG,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD13 != null">
+        #{PMMUD13,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM18 != null">
+        #{PMM18,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM25 != null">
+        #{PMM25,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_TQA03 != null">
+        #{TC_TQA03,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.PMMExample" resultType="java.lang.Long">
+    select count(*) from PMM
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PMM
+    <set>
+      <if test="record.PMM01 != null">
+        PMM01 = #{record.PMM01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TA_PMM05 != null">
+        TA_PMM05 = #{record.TA_PMM05,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM03 != null">
+        PMM03 = #{record.PMM03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMUD02 != null">
+        PMMUD02 = #{record.PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMC03 != null">
+        PMC03 = #{record.PMC03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM909 != null">
+        PMM909 = #{record.PMM909,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM02 != null">
+        PMM02 = #{record.PMM02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM07 != null">
+        PMM07 = #{record.PMM07,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM13 != null">
+        PMM13 = #{record.PMM13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.GEM02 != null">
+        GEM02 = #{record.GEM02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMCOND != null">
+        PMMCOND = #{record.PMMCOND,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM04 != null">
+        PMM04 = #{record.PMM04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMCONU != null">
+        PMMCONU = #{record.PMMCONU,jdbcType=VARCHAR},
+      </if>
+      <if test="record.GEN02 != null">
+        GEN02 = #{record.GEN02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM12 != null">
+        PMM12 = #{record.PMM12,jdbcType=VARCHAR},
+      </if>
+      <if test="record.GEN021 != null">
+        GEN021 = #{record.GEN021,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TA_PMM06 != null">
+        TA_PMM06 = #{record.TA_PMM06,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TC_ZZD02 != null">
+        TC_ZZD02 = #{record.TC_ZZD02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMUSER != null">
+        PMMUSER = #{record.PMMUSER,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMMODU != null">
+        PMMMODU = #{record.PMMMODU,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMGRUP != null">
+        PMMGRUP = #{record.PMMGRUP,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMDATE != null">
+        PMMDATE = #{record.PMMDATE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMORIU != null">
+        PMMORIU = #{record.PMMORIU,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TA_PMM10 != null">
+        TA_PMM10 = #{record.TA_PMM10,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMORIG != null">
+        PMMORIG = #{record.PMMORIG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMUD13 != null">
+        PMMUD13 = #{record.PMMUD13,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM18 != null">
+        PMM18 = #{record.PMM18,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMM25 != null">
+        PMM25 = #{record.PMM25,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TC_TQA03 != null">
+        TC_TQA03 = #{record.TC_TQA03,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PMM
+    set PMM01 = #{record.PMM01,jdbcType=VARCHAR},
+      TA_PMM05 = #{record.TA_PMM05,jdbcType=VARCHAR},
+      PMM03 = #{record.PMM03,jdbcType=VARCHAR},
+      PMMUD02 = #{record.PMMUD02,jdbcType=VARCHAR},
+      PMC03 = #{record.PMC03,jdbcType=VARCHAR},
+      PMM909 = #{record.PMM909,jdbcType=VARCHAR},
+      PMM02 = #{record.PMM02,jdbcType=VARCHAR},
+      PMM07 = #{record.PMM07,jdbcType=VARCHAR},
+      PMM13 = #{record.PMM13,jdbcType=VARCHAR},
+      GEM02 = #{record.GEM02,jdbcType=VARCHAR},
+      PMMCOND = #{record.PMMCOND,jdbcType=VARCHAR},
+      PMM04 = #{record.PMM04,jdbcType=VARCHAR},
+      PMMCONU = #{record.PMMCONU,jdbcType=VARCHAR},
+      GEN02 = #{record.GEN02,jdbcType=VARCHAR},
+      PMM12 = #{record.PMM12,jdbcType=VARCHAR},
+      GEN021 = #{record.GEN021,jdbcType=VARCHAR},
+      TA_PMM06 = #{record.TA_PMM06,jdbcType=VARCHAR},
+      TC_ZZD02 = #{record.TC_ZZD02,jdbcType=VARCHAR},
+      PMMUSER = #{record.PMMUSER,jdbcType=VARCHAR},
+      PMMMODU = #{record.PMMMODU,jdbcType=VARCHAR},
+      PMMGRUP = #{record.PMMGRUP,jdbcType=VARCHAR},
+      PMMDATE = #{record.PMMDATE,jdbcType=VARCHAR},
+      PMMORIU = #{record.PMMORIU,jdbcType=VARCHAR},
+      TA_PMM10 = #{record.TA_PMM10,jdbcType=VARCHAR},
+      PMMORIG = #{record.PMMORIG,jdbcType=VARCHAR},
+      PMMUD13 = #{record.PMMUD13,jdbcType=VARCHAR},
+      PMM18 = #{record.PMM18,jdbcType=VARCHAR},
+      PMM25 = #{record.PMM25,jdbcType=VARCHAR},
+      TC_TQA03 = #{record.TC_TQA03,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.PMM">
+    update PMM
+    <set>
+      <if test="TA_PMM05 != null">
+        TA_PMM05 = #{TA_PMM05,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM03 != null">
+        PMM03 = #{PMM03,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD02 != null">
+        PMMUD02 = #{PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMC03 != null">
+        PMC03 = #{PMC03,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM909 != null">
+        PMM909 = #{PMM909,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM02 != null">
+        PMM02 = #{PMM02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM07 != null">
+        PMM07 = #{PMM07,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM13 != null">
+        PMM13 = #{PMM13,jdbcType=VARCHAR},
+      </if>
+      <if test="GEM02 != null">
+        GEM02 = #{GEM02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMCOND != null">
+        PMMCOND = #{PMMCOND,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM04 != null">
+        PMM04 = #{PMM04,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMCONU != null">
+        PMMCONU = #{PMMCONU,jdbcType=VARCHAR},
+      </if>
+      <if test="GEN02 != null">
+        GEN02 = #{GEN02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM12 != null">
+        PMM12 = #{PMM12,jdbcType=VARCHAR},
+      </if>
+      <if test="GEN021 != null">
+        GEN021 = #{GEN021,jdbcType=VARCHAR},
+      </if>
+      <if test="TA_PMM06 != null">
+        TA_PMM06 = #{TA_PMM06,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_ZZD02 != null">
+        TC_ZZD02 = #{TC_ZZD02,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUSER != null">
+        PMMUSER = #{PMMUSER,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMMODU != null">
+        PMMMODU = #{PMMMODU,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMGRUP != null">
+        PMMGRUP = #{PMMGRUP,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMDATE != null">
+        PMMDATE = #{PMMDATE,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMORIU != null">
+        PMMORIU = #{PMMORIU,jdbcType=VARCHAR},
+      </if>
+      <if test="TA_PMM10 != null">
+        TA_PMM10 = #{TA_PMM10,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMORIG != null">
+        PMMORIG = #{PMMORIG,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD13 != null">
+        PMMUD13 = #{PMMUD13,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM18 != null">
+        PMM18 = #{PMM18,jdbcType=VARCHAR},
+      </if>
+      <if test="PMM25 != null">
+        PMM25 = #{PMM25,jdbcType=VARCHAR},
+      </if>
+      <if test="TC_TQA03 != null">
+        TC_TQA03 = #{TC_TQA03,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PMM01 = #{PMM01,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.PMM">
+    update PMM
+    set TA_PMM05 = #{TA_PMM05,jdbcType=VARCHAR},
+      PMM03 = #{PMM03,jdbcType=VARCHAR},
+      PMMUD02 = #{PMMUD02,jdbcType=VARCHAR},
+      PMC03 = #{PMC03,jdbcType=VARCHAR},
+      PMM909 = #{PMM909,jdbcType=VARCHAR},
+      PMM02 = #{PMM02,jdbcType=VARCHAR},
+      PMM07 = #{PMM07,jdbcType=VARCHAR},
+      PMM13 = #{PMM13,jdbcType=VARCHAR},
+      GEM02 = #{GEM02,jdbcType=VARCHAR},
+      PMMCOND = #{PMMCOND,jdbcType=VARCHAR},
+      PMM04 = #{PMM04,jdbcType=VARCHAR},
+      PMMCONU = #{PMMCONU,jdbcType=VARCHAR},
+      GEN02 = #{GEN02,jdbcType=VARCHAR},
+      PMM12 = #{PMM12,jdbcType=VARCHAR},
+      GEN021 = #{GEN021,jdbcType=VARCHAR},
+      TA_PMM06 = #{TA_PMM06,jdbcType=VARCHAR},
+      TC_ZZD02 = #{TC_ZZD02,jdbcType=VARCHAR},
+      PMMUSER = #{PMMUSER,jdbcType=VARCHAR},
+      PMMMODU = #{PMMMODU,jdbcType=VARCHAR},
+      PMMGRUP = #{PMMGRUP,jdbcType=VARCHAR},
+      PMMDATE = #{PMMDATE,jdbcType=VARCHAR},
+      PMMORIU = #{PMMORIU,jdbcType=VARCHAR},
+      TA_PMM10 = #{TA_PMM10,jdbcType=VARCHAR},
+      PMMORIG = #{PMMORIG,jdbcType=VARCHAR},
+      PMMUD13 = #{PMMUD13,jdbcType=VARCHAR},
+      PMM18 = #{PMM18,jdbcType=VARCHAR},
+      PMM25 = #{PMM25,jdbcType=VARCHAR},
+      TC_TQA03 = #{TC_TQA03,jdbcType=VARCHAR}
+    where PMM01 = #{PMM01,jdbcType=VARCHAR}
+  </update>
+</mapper>

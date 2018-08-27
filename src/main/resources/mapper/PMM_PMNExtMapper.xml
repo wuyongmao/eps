@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.PMM_PMNExtMapper">
+
+	<resultMap id="PMMResultMap" type="com.chenyuantech.eps.bean.PMMPO">
+		<id column="PMM01" jdbcType="VARCHAR" property="PMM01" />
+		<result column="TA_PMM05" jdbcType="VARCHAR" property="TA_PMM05" />
+		<result column="PMM03" jdbcType="DECIMAL" property="PMM03" />
+		<result column="PMMUD02" jdbcType="VARCHAR" property="PMMUD02" />
+		<result column="PMC03" jdbcType="VARCHAR" property="PMC03" />
+		<result column="PMM909" jdbcType="VARCHAR" property="PMM909" />
+		<result column="PMM02" jdbcType="VARCHAR" property="PMM02" />
+		<result column="PMM07" jdbcType="VARCHAR" property="PMM07" />
+		<result column="PMM13" jdbcType="VARCHAR" property="PMM13" />
+		<result column="GEM02" jdbcType="VARCHAR" property="GEM02" />
+		<result column="PMMCOND" jdbcType="VARCHAR" property="PMMCOND" />
+		<result column="PMM04" jdbcType="VARCHAR" property="PMM04" />
+		<result column="PMMCONU" jdbcType="VARCHAR" property="PMMCONU" />
+		<result column="GEN02" jdbcType="VARCHAR" property="GEN02" />
+		<result column="PMM12" jdbcType="VARCHAR" property="PMM12" />
+		<result column="GEN021" jdbcType="VARCHAR" property="GEN021" />
+		<result column="TA_PMM06" jdbcType="VARCHAR" property="TA_PMM06" />
+		<result column="TC_ZZD02" jdbcType="VARCHAR" property="TC_ZZD02" />
+		<result column="PMMUSER" jdbcType="VARCHAR" property="PMMUSER" />
+		<result column="PMMMODU" jdbcType="VARCHAR" property="PMMMODU" />
+		<result column="PMMGRUP" jdbcType="VARCHAR" property="PMMGRUP" />
+		<result column="PMMDATE" jdbcType="VARCHAR" property="PMMDATE" />
+		<result column="PMMORIU" jdbcType="VARCHAR" property="PMMORIU" />
+		<result column="TA_PMM10" jdbcType="VARCHAR" property="TA_PMM10" />
+		<result column="PMMORIG" jdbcType="VARCHAR" property="PMMORIG" />
+		<result column="PMMUD13" jdbcType="VARCHAR" property="PMMUD13" />
+		<result column="PMM18" jdbcType="VARCHAR" property="PMM18" />
+		<result column="PMM25" jdbcType="VARCHAR" property="PMM25" />
+		<collection property="PMNList" column="pmm01" javaType="ArrayList"
+			select="selectPMN" ofType="com.chenyuantech.eps.bean.PMN">
+		</collection>
+	</resultMap>
+
+	<select id="selectPMN" parameterType="java.lang.String"
+		resultType="com.chenyuantech.eps.bean.PMN">
+		select pmn.pmn02,
+		pmn.pmn24,
+		pmn.pmn25,
+		pmn.ta_pmn05,
+		pmn.ta_pmn05_ds,
+		pmn.pmn16,
+		pmn.pmnud13,
+		pmn.gen02y,
+		pmn.pmn04,
+		pmn.pmn041,
+		pmn.ima021,
+		pmn.pmn07,
+		pmn.pmnud05,
+		pmn.pmnud05_ds,
+		pmn.pmn20,
+		pmn.cjl,
+		pmn.pmn86,
+		pmn.pmn33,
+		pmn.pmn34,
+		pmn.pmn35,
+		pmn.pmn67,
+		pmn.pmnud04,
+		pmn.pmn01
+		from PMN where pmn01 = #{pmn01,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findPMMPMNResultMap" resultMap="PMMResultMap">
+		select pmm.ta_pmm05,
+		pmm.pmm03,
+		pmm.pmmud02,
+		pmm.pmc03,
+		pmm.pmm909,
+		pmm.pmm02,
+		pmm.pmm07,
+		pmm.pmm01,
+		pmm.pmm13,
+		pmm.gem02,
+		pmm.pmmcond,
+		pmm.pmm04,
+		pmm.pmmconu,
+		pmm.gen02,
+		pmm.pmm12,
+		pmm.gen021,
+		pmm.ta_pmm06,
+		pmm.tc_zzd02,
+		pmm.pmmuser,
+		pmm.pmmmodu,
+		pmm.pmmgrup,
+		pmm.pmmdate,
+		pmm.pmmoriu,
+		pmm.ta_pmm10,
+		pmm.pmmorig,
+		pmm.pmmud13,
+		pmm.pmm18,
+		pmm.pmm25,
+		pmn.pmn02,
+		pmn.pmn24,
+		pmn.pmn25,
+		pmn.ta_pmn05,
+		pmn.ta_pmn05_ds,
+		pmn.pmn16,
+		pmn.pmnud13,
+		pmn.gen02y,
+		pmn.pmn04,
+		pmn.pmn041,
+		pmn.ima021,
+		pmn.pmn07,
+		pmn.pmnud05,
+		pmn.pmnud05_ds,
+		pmn.pmn20,
+		pmn.cjl,
+		pmn.pmn86,
+		pmn.pmn33,
+		pmn.pmn34,
+		pmn.pmn35,
+		pmn.pmn67,
+		pmn.pmnud04,
+
+		pmn.pmn01 from pmm left join pmn on
+		pmm.pmm01=pmn.pmn01
+
+	</select>
+
+
+	<select id="findPMMPMNLinkList" resultType="java.util.LinkedHashMap">
+
+		with del as (
+		select rvb.rvb04,rvb.rvb03,sum(rvb.rvb07) shznum from rvb group by
+		rvb.rvb04,rvb.rvb03
+		) ,
+		ddlog_t as (
+		select max( nvl(ddlog.launchtime,0) )launchtime,ddlog.pmn01,ddlog.pmn02 from ddlog
+		where ddlog.status='1' group by ddlog.pmn01,ddlog.pmn02
+		)
+		,ddlog_r as
+		(
+		select ddlog.requirementdd,ddlog.replydd,ddlog.pmn01,ddlog.pmn02 ,
+		 (CASE WHEN  DDLOG.MEMO IS NOT   NULL THEN 'Y' ELSE 'N' END ) AS isautojq
+		from ddlog, ddlog_t
+		where ( ddlog.pmn01=ddlog_t.pmn01 and ddlog.pmn02=ddlog_t.pmn02 and
+		 NVL( ddlog.launchtime,0)= nvl(ddlog_t.launchtime ,0) )
+		)
+
+
+
+
+		select
+		del.shznum ,
+		pmm.ta_pmm05,
+		pmm.pmm03,
+		pmm.pmmud02,
+		pmm.pmc03,
+		pmm.pmm909,
+		pmm.pmm02,
+		pmm.pmm07,
+		pmm.pmm01,
+		pmm.pmm13,
+		pmm.gem02,
+		pmm.pmmcond,
+		pmm.pmm04,
+		pmm.pmmconu,
+		pmm.gen02,
+		pmm.pmm12,
+		pmm.gen021,
+		pmm.ta_pmm06,
+		pmm.tc_zzd02,
+		pmm.pmmuser,
+		pmm.pmmmodu,
+		pmm.pmmgrup,
+		pmm.pmmdate,
+		pmm.pmmoriu,
+		pmm.ta_pmm10,
+		pmm.pmmorig,
+		pmm.pmmud13,
+		pmm.pmm18,
+		pmm.pmm25,
+		pmm.TC_TQA03,
+		pmn.pmn02,
+		pmn.pmn24,
+		pmn.pmn25,
+		pmn.ta_pmn05,
+		pmn.ta_pmn05_ds,
+		pmn.pmn16,
+		pmn.pmnud13,
+		pmn.gen02y,
+		pmn.pmn04,
+		pmn.pmn041,
+		pmn.ima021,
+		pmn.pmn07,
+		pmn.pmnud05,
+		pmn.pmnud05_ds,
+		pmn.pmn20,
+		 nvl(pmn.pmn20,0)- NVL( del.shznum,0)    cjl,
+		pmn.pmn41,
+		pmn.sfb02,
+		pmn.pmn86,
+		pmn.pmn33,
+		pmn.pmn34,
+		pmn.pmn35,
+		pmn.pmn67,
+		pmn.shdz,
+		'查看批色' as PSQK ,
+		pmn.psflag ,
+		'wxb' as ZLWXB,
+	    'fwxb' as FLWXB ,
+		pmn.pmnud04,
+		pmn.pmn01
+		,ddlog_r.requirementdd,ddlog_r. isautojq ,
+		ddlog_r.replydd
+		, ( CASE  WHEN  EXISTS (SELECT 1 FROM  pnb  WHERE pnb.pnb01=pmn.pmn01 AND pnb.pnb03=pmn.pmn02) THEN 'Y' ELSE  'N'  END  ) AS exitsbg
+		, ( CASE  WHEN  EXISTS (SELECT 1 FROM  tc_rvbs  WHERE tc_rvbs01=pmn.pmn01 AND tc_rvbs02=pmn.pmn02) THEN 'Y' ELSE  'N'  END  ) AS "SIZE"
+		from pmm
+
+		left join pmn on pmm.pmm01=pmn.pmn01
+		left join del on ( del.rvb04=pmn.pmn01 and del.rvb03=pmn.pmn02 )
+
+		left join ddlog_r on ( ddlog_r.pmn01=pmn.pmn01 and ddlog_r.pmn02=pmn.pmn02
+		)
+
+		<where>
+
+               pmn.pmn16  in ('2', '6','7','8')
+
+			<if test="pmm.PMM01 != null  and  pmm.PMM01 != ''">
+				and
+				pmm.pmm01=#{pmm.PMM01}
+			</if>
+			<if test="pmm.PMM01 != null  and  pmm.PMM01 != ''">
+				and
+				pmm.pmm01=#{pmm.PMM01}
+			</if>			
+			
+			<if test="ISAUTOJQ != null  and  ISAUTOJQ != ''">
+				and
+				ISAUTOJQ=#{ISAUTOJQ}
+			</if>			
+
+            
+
+			<if test="pmm.TA_PMM05 != null and   pmm.TA_PMM05 != '' ">
+				and pmm.ta_pmm05=#{pmm.TA_PMM05}
+			</if>
+			<if test="pmm.PMM03 != null  and   pmm.PMM03 != '' ">
+				and
+				pmm.pmm03=#{ pmm.PMM03}
+			</if>
+			<if test="pmm.PMMUD02 != null  and   pmm.PMMUD02 != ''">
+				and pmm.pmmud02 =#{pmm.PMMUD02 }
+			</if>
+			<if test="pmm.PMC03 != null  and   pmm.PMC03 != ''">
+				and pmm.pmc03 =#{pmm.PMC03 }
+			</if>
+			<if test="pmm.PMM909 != null  and   pmm.PMM909 != ''">
+				and pmm.pmm909 =#{ pmm.PMM909}
+			</if>
+			<if test="pmm.PMM02 != null  and   pmm.PMM02 != ''">
+				     <if test=" pmm.PMM02 =='SUB'     ">
+				            and pmm.PMM02 =#{ pmm.PMM02 }
+					 </if>
+					 <if test=" pmm.PMM02 !='SUB' ">
+					    and pmm.PMM02  in ('REG' ,'TAP','EXP' )
+					 </if>  
+					 
+				 
+			</if>
+			<if test="pmm.PMM07  != null  and   pmm.PMM07 != ''">
+				and pmm.pmm07 =#{ pmm.PMM07 }
+			</if>
+			<if test=" pmm.PMM13 != null  and   pmm.PMM13 != ''">
+				and pmm.pmm13 =#{pmm.PMM13 }
+			</if>
+			<if test="pmm.GEM02  != null  and   pmm.GEM02 != ''">
+				and pmm.gem02 =#{ pmm.GEM02 }
+			</if>
+			<if test="pmm.PMMCOND  != null  and   pmm.PMMCOND != ''">
+				and pmm.pmmcond =#{ pmm.PMMCOND }
+			</if>
+			<if test="pmm.PMM04  != null  and   pmm.PMM04 != ''">
+				and pmm.pmm04 like CONCAT(#{ pmm.PMM04},'%')
+
+
+			</if>
+			<if test="pmm.PMMCONU  != null  and   pmm.PMMCONU != ''">
+				and pmm.pmmconu =#{pmm.PMMCONU }
+			</if>
+			<if test="pmm.GEN02  != null  and   pmm.GEN02 != ''">
+				and pmm.gen02 =#{ pmm.GEN02 }
+			</if>
+			<if test="pmm.PMM12  != null  and   pmm.PMM12 != ''">
+				and pmm.pmm12 =#{ pmm.PMM12 }
+			</if>
+			<if test=" pmm.GEN021 != null  and   pmm.GEN021 != ''">
+				and pmm.gen021 =#{ pmm.GEN021 }
+			</if>
+			<if test=" pmm.TA_PMM06 != null  and   pmm.TA_PMM06 != ''">
+ 				  
+					
+                      <if test=" pmm.TA_PMM06 =='RD'     ">
+				            and pmm.ta_pmm06 =#{ pmm.TA_PMM06 }
+					 </if>
+					 <if test=" pmm.TA_PMM06 !='RD'     ">
+					    and pmm.ta_pmm06  in ('CY' ,'DH' )
+					 </if>  
+					 
+
+			</if>
+			<if test="pmm.TC_ZZD02  != null  and   pmm.TC_ZZD02 != ''">
+				and pmm.tc_zzd02 =#{ pmm.TC_ZZD02 }
+			</if>
+			<if test=" pmm.PMMDATE != null  and   pmm.PMMDATE != ''">
+				and pmm.pmmdate =#{ pmm.PMMDATE }
+			</if>
+			<if test=" pmm.PMMORIU != null  and   pmm.PMMORIU != ''">
+				and pmm.pmmoriu =#{ pmm.PMMORIU }
+			</if>
+			<if test="pmm.TA_PMM10  != null  and   pmm.TA_PMM10 != ''">
+				and pmm.ta_pmm10 =#{ pmm.TA_PMM10 }
+			</if>
+			<if test="pmm.PMMGRUP  != null  and   pmm.PMMGRUP != ''">
+				and pmm.pmmgrup =#{ pmm.PMMGRUP }
+			</if>
+
+			<if test="pmm.TC_TQA03  != null  and   pmm.TC_TQA03 != ''">
+				and pmm.TC_TQA03 =#{ pmm.TC_TQA03 }
+			</if>
+
+
+			<if test="pmm.PMMMODU  != null  and   pmm.PMMMODU != ''">
+				and pmm.pmmmodu =#{ pmm.PMMMODU }
+			</if>
+			<if test="pmm.PMMUSER  != null  and   pmm.PMMUSER != ''">
+				and pmm.pmmuser =#{ pmm.PMMUSER }
+			</if>
+			<if test=" pmm.PMMORIG != null  and   pmm.PMMORIG != ''">
+				and pmm.pmmorig =#{ pmm.PMMORIG }
+			</if>
+			<if test=" pmm.PMMUD13 != null  and   pmm.PMMUD13 != ''">
+				and pmm.pmmud13 =#{ pmm.PMMUD13 }
+			</if>
+			<if test=" pmm.PMM18 != null  and   pmm.PMM18 != ''">
+				and pmm.pmm18 =#{pmm.PMM18 }
+			</if>
+			<if test="pmm.PMM25  != null  and   pmm.PMM25 != ''">
+				and pmm.pmm25 =#{ pmm.PMM25 }
+			</if>
+			<if test=" pmn.PMN02 != null  and   pmn.PMN02 != ''">
+				and pmn.pmn02 =#{ pmn.PMN02}
+			</if>
+			<if test=" pmn.PMN24 != null  and   pmn.PMN24 != ''">
+				and pmn.pmn24=#{pmn.PMN24 }
+			</if>
+			<if test=" pmn.PMN25 != null  and   pmn.PMN25 != ''">
+				and pmn.pmn25=#{pmn.PMN25 }
+			</if>
+			<if test=" pmn.TA_PMN05 != null  and   pmn.TA_PMN05 != ''">
+				and pmn.ta_pmn05 =#{ pmn.TA_PMN05}
+			</if>
+			<if test=" pmn.TA_PMN05_DS != null  and   pmn.TA_PMN05_DS != ''">
+				and pmn.ta_pmn05_ds=#{ pmn.TA_PMN05_DS}
+			</if>
+			<if test=" pmn.PMN16 != null  and   pmn.PMN16 != ''">
+				and pmn.pmn16 =#{ pmn.PMN16}
+			</if>
+			<if test=" pmn.SHDZ != null  and   pmn.SHDZ != ''">
+				and pmn.SHDZ=#{pmn.SHDZ }
+			</if>
+
+			<if test=" pmn.PMNUD13 != null  and   pmn.PMNUD13 != ''">
+				and pmn.pmnud13=#{pmn.PMNUD13 }
+			</if>
+			<if test="pmn.GEN02Y  != null  and   pmn.GEN02Y != ''">
+				and pmn.gen02y=#{ pmn.GEN02Y}
+			</if>
+			<if test="pmn.PSFLAG  != null  and   pmn.PSFLAG != ''">
+				and pmn.psflag=#{ pmn.PSFLAG}
+			</if>
+
+
+			<if test="pmn.PMN04  != null  and   pmn.PMN04 != ''">
+				and pmn.pmn04=#{ pmn.PMN04}
+			</if>
+			<if test=" pmn.PMN041 != null  and   pmn.PMN041 != ''">
+				and pmn.pmn041=#{pmn.PMN041 }
+			</if>
+			<if test=" pmn.IMA021  != null  and   pmn.IMA021 != ''">
+				and pmn.ima021 =#{ pmn.IMA021 }
+			</if>
+			<if test=" pmn.PMNUD05  != null  and   pmn.PMNUD05 != ''">
+				and pmn.pmnud05 =#{ pmn.PMNUD05 }
+			</if>
+			<if test="pmn.PMN07   != null  and   pmn.PMN07 != ''">
+				and pmn.pmn07 =#{pmn.PMN07 }
+			</if>
+			<if test=" pmn.PMNUD05_DS  != null  and   pmn.PMNUD05_DS != ''">
+				and pmn.pmnud05_ds =#{ pmn.PMNUD05_DS }
+			</if>
+			<if test=" pmn.PMN20  != null  and   pmn.PMN20 != ''">
+				and pmn.pmn20 =#{ pmn.PMN20 }
+			</if>
+			<if test=" pmn.CJL  != null  and   pmn.CJL != ''">
+				and pmn.cjl =#{ pmn.CJL }
+			</if>
+			<if test=" pmn.PMN86  != null  and   pmn.PMN86 != ''">
+				and pmn.pmn86 =#{pmn.PMN86 }
+			</if>
+			<if test="pmn.PMN33   != null  and   pmn.PMN33 != ''">
+				and pmn.pmn33 =#{pmn.PMN33 }
+			</if>
+			<if test="pmn.PMN34   != null  and   pmn.PMN34 != ''">
+				and pmn.pmn34 =#{ pmn.PMN34 }
+			</if>
+			<if test=" pmn.PMN35  != null  and   pmn.PMN35 != ''">
+				and pmn.pmn35 =#{pmn.PMN35 }
+			</if>
+			<if test="pmn.PMN67   != null  and   pmn.PMN67 != ''">
+				and pmn.pmn67 =#{ pmn.PMN67 }
+			</if>
+			<if test=" pmn.PMNUD04  != null  and   pmn.PMNUD04 != ''">
+				and pmn.pmnud04=#{ pmn.PMNUD04}
+			</if>
+			<if test=" pmn.PMN01 != null  and   pmn.PMN01 != ''">
+				and pmn.pmn01=#{ pmn.PMN01}
+			</if>
+			
+		   <if test=" pmn.PMN41 != null  and   pmn.PMN41 != ''">
+				and pmn.pmn41=#{ pmn.PMN41}
+			</if>
+			
+			<if test=" pmn.SFB02 != null  and   pmn.SFB02 != ''">
+				and pmn.sfb02=#{ pmn.SFB02}
+			</if>
+			
+		</where>
+
+		<if test="sort != null and  sort != '' ">
+			order by ${sort}
+		</if>
+
+
+
+	</select>
+
+
+
+
+
+
+
+</mapper>

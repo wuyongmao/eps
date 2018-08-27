@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.ColorchklogMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Colorchklog">
+    <id column="CHKID" jdbcType="VARCHAR" property="chkid" />
+    <result column="PMN01" jdbcType="VARCHAR" property="pmn01" />
+    <result column="PMN02" jdbcType="DECIMAL" property="pmn02" />
+    <result column="SEQ" jdbcType="DECIMAL" property="seq" />
+    <result column="RDRESULT" jdbcType="CHAR" property="rdresult" />
+    <result column="QCRESULT" jdbcType="CHAR" property="qcresult" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="ATTR" jdbcType="VARCHAR" property="attr" />
+    <result column="CHKTIME" jdbcType="VARCHAR" property="chktime" />
+    <result column="ACCID" jdbcType="VARCHAR" property="accid" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CHKID, PMN01, PMN02, SEQ, RDRESULT, QCRESULT, MEMO, ATTR, CHKTIME, ACCID, NAME
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.ColorchklogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from COLORCHKLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COLORCHKLOG
+    where CHKID = #{chkid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from COLORCHKLOG
+    where CHKID = #{chkid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.ColorchklogExample">
+    delete from COLORCHKLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Colorchklog">
+    <selectKey keyProperty="chkid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into COLORCHKLOG (CHKID, PMN01, PMN02, 
+      SEQ, RDRESULT, QCRESULT, 
+      MEMO, ATTR, CHKTIME, 
+      ACCID, NAME)
+    values (#{chkid,jdbcType=VARCHAR}, #{pmn01,jdbcType=VARCHAR}, #{pmn02,jdbcType=DECIMAL}, 
+      #{seq,jdbcType=DECIMAL}, #{rdresult,jdbcType=CHAR}, #{qcresult,jdbcType=CHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{attr,jdbcType=VARCHAR}, #{chktime,jdbcType=VARCHAR}, 
+      #{accid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Colorchklog">
+    <selectKey keyProperty="chkid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into COLORCHKLOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      CHKID,
+      <if test="pmn01 != null">
+        PMN01,
+      </if>
+      <if test="pmn02 != null">
+        PMN02,
+      </if>
+      <if test="seq != null">
+        SEQ,
+      </if>
+      <if test="rdresult != null">
+        RDRESULT,
+      </if>
+      <if test="qcresult != null">
+        QCRESULT,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="attr != null">
+        ATTR,
+      </if>
+      <if test="chktime != null">
+        CHKTIME,
+      </if>
+      <if test="accid != null">
+        ACCID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{chkid,jdbcType=VARCHAR},
+      <if test="pmn01 != null">
+        #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        #{pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="rdresult != null">
+        #{rdresult,jdbcType=CHAR},
+      </if>
+      <if test="qcresult != null">
+        #{qcresult,jdbcType=CHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="attr != null">
+        #{attr,jdbcType=VARCHAR},
+      </if>
+      <if test="chktime != null">
+        #{chktime,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.ColorchklogExample" resultType="java.lang.Long">
+    select count(*) from COLORCHKLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update COLORCHKLOG
+    <set>
+      <if test="record.chkid != null">
+        CHKID = #{record.chkid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmn01 != null">
+        PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmn02 != null">
+        PMN02 = #{record.pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="record.seq != null">
+        SEQ = #{record.seq,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rdresult != null">
+        RDRESULT = #{record.rdresult,jdbcType=CHAR},
+      </if>
+      <if test="record.qcresult != null">
+        QCRESULT = #{record.qcresult,jdbcType=CHAR},
+      </if>
+      <if test="record.memo != null">
+        MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr != null">
+        ATTR = #{record.attr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chktime != null">
+        CHKTIME = #{record.chktime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accid != null">
+        ACCID = #{record.accid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update COLORCHKLOG
+    set CHKID = #{record.chkid,jdbcType=VARCHAR},
+      PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      PMN02 = #{record.pmn02,jdbcType=DECIMAL},
+      SEQ = #{record.seq,jdbcType=DECIMAL},
+      RDRESULT = #{record.rdresult,jdbcType=CHAR},
+      QCRESULT = #{record.qcresult,jdbcType=CHAR},
+      MEMO = #{record.memo,jdbcType=VARCHAR},
+      ATTR = #{record.attr,jdbcType=VARCHAR},
+      CHKTIME = #{record.chktime,jdbcType=VARCHAR},
+      ACCID = #{record.accid,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Colorchklog">
+    update COLORCHKLOG
+    <set>
+      <if test="pmn01 != null">
+        PMN01 = #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        PMN02 = #{pmn02,jdbcType=DECIMAL},
+      </if>
+      <if test="seq != null">
+        SEQ = #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="rdresult != null">
+        RDRESULT = #{rdresult,jdbcType=CHAR},
+      </if>
+      <if test="qcresult != null">
+        QCRESULT = #{qcresult,jdbcType=CHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="attr != null">
+        ATTR = #{attr,jdbcType=VARCHAR},
+      </if>
+      <if test="chktime != null">
+        CHKTIME = #{chktime,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        ACCID = #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHKID = #{chkid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Colorchklog">
+    update COLORCHKLOG
+    set PMN01 = #{pmn01,jdbcType=VARCHAR},
+      PMN02 = #{pmn02,jdbcType=DECIMAL},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      RDRESULT = #{rdresult,jdbcType=CHAR},
+      QCRESULT = #{qcresult,jdbcType=CHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      ATTR = #{attr,jdbcType=VARCHAR},
+      CHKTIME = #{chktime,jdbcType=VARCHAR},
+      ACCID = #{accid,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR}
+    where CHKID = #{chkid,jdbcType=VARCHAR}
+  </update>
+</mapper>

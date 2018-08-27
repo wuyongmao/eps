@@ -1,0 +1,14 @@
+//用户菜单权限档
+[{
+			"field" : "ACCID",
+			"title" : "帐号",
+			"width" : 100
+		}, {
+			"field" : "RIGHTLIST",
+			"title" : "权限列表",
+			"width" : 100
+		}, {
+			"field" : "RIGHTSID",
+			"title" : "流水号",
+			"width" : 100
+		}]

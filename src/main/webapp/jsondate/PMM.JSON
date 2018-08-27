@@ -1,0 +1,142 @@
+[
+  {
+    "field": "PMC03",
+    "title": "供应商简称",
+    "width": 100
+  },
+  {
+    "field": "PMM03",
+    "title": "变更版本",
+    "width": 100
+  },
+  {
+    "field": "PMMCONU",
+    "title": "审核人员",
+    "width": 100
+  },
+  {
+    "field": "GEN02",
+    "title": "审核人姓名",
+    "width": 100
+  },
+  {
+    "field": "PMMCOND",
+    "title": "审核日期",
+    "width": 100
+  },
+  {
+    "field": "PMMDATE",
+    "title": "最近更改日期",
+    "width": 100
+  },
+  {
+    "field": "PMM25",
+    "title": "状况码",
+    "width": 100
+  },
+  {
+    "field": "PMM18",
+    "title": "确认码",
+    "width": 100
+  },
+  {
+    "field": "TA_PMM10",
+    "title": "结案人员",
+    "width": 100
+  },
+  {
+    "field": "PMMUD13",
+    "title": "结案日期",
+    "width": 100
+  },
+  {
+    "field": "TA_PMM06",
+    "title": "营运组织代号",
+    "width": 100
+  },
+  {
+    "field": "TC_ZZD02",
+    "title": "营运组织名称",
+    "width": 100
+  },
+  {
+    "field": "PMMORIU",
+    "title": "资料建立人",
+    "width": 100
+  },
+  {
+    "field": "PMMORIG",
+    "title": "资料建立部门",
+    "width": 100
+  },
+  {
+    "field": "PMMUSER",
+    "title": "资料所有者",
+    "width": 100
+  },
+  {
+    "field": "PMMGRUP",
+    "title": "资料所有部门",
+    "width": 100
+  },
+  {
+    "field": "PMMMODU",
+    "title": "资料更改者",
+    "width": 100
+  },
+  {
+    "field": "PMM909",
+    "title": "资料来源",
+    "width": 100
+  },
+  {
+    "field": "GEM02",
+    "title": "部门名称",
+    "width": 100
+  },
+  {
+    "field": "PMM12",
+    "title": "采购人员代号",
+    "width": 100
+  },
+  {
+    "field": "GEN021",
+    "title": "采购人姓名",
+    "width": 100
+  },
+  {
+    "field": "PMM01",
+    "title": "采购单号",
+    "width": 100
+  },
+  {
+    "field": "PMM02",
+    "title": "采购单性质",
+    "width": 100
+  },
+  {
+    "field": "PMMUD02",
+    "title": "采购厂商",
+    "width": 100
+  },
+  {
+    "field": "TA_PMM05",
+    "title": "采购方式",
+    "width": 100
+  },
+  {
+    "field": "PMM04",
+    "title": "采购日期",
+    "width": 100
+  },
+  {
+    "field": "PMM07",
+    "title": "采购类型",
+    "width": 100
+  },
+  {
+    "field": "PMM13",
+    "title": "采购部门代号",
+    "width": 100
+  }
+]

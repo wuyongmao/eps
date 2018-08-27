@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1"
+	charset="UTF-8" />
+
+<script type="text/javascript" src="./inc/easyui1.5/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="inc/css/sign.css" />
+<link rel="stylesheet" type="text/css"
+	href="inc/bootstrap-3.3.7/css/bootstrap.min.css">
+<script src="inc/js/SignIn.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="./inc/easyui1.5/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="./inc/easyui1.5/themes/icon.css" />
+<script type="text/javascript"
+	src="./inc/easyui1.5/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./inc/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#loginbtn").click(function() {
+			var acc = $("#ACC").val();
+			var pwd = $("#PWD").val(); 
+			var obj = {};
+			obj.ACC = acc;
+			obj.PWD = pwd; 
+			$.ajax({
+				type : "get",
+				timeout : 10000, //超时时间设置，单位毫秒       1000ms=1s
+				dataType : 'json', //返回的数据格式
+				data : obj, // $('#loginform').serialize(),
+				url : "/eps/users/checklogin1",
+				complete : function(XMLHttpRequest, status) {
+					if (status == 'timeout') //超时,status还有success,error等值的情况
+					{
+						alert("超时");
+					}
+				},
+				success : function(msg) {
+					if (msg.code == 100) {
+						window.open('welcome.jsp', '_self', '');
+
+					} else {
+						$("#hidden").show(); 
+					}
+
+				}
+			});
+
+			//window.open('index.jsp','_self','');
+		});
+		$("#ACC").keydown(function(event) {
+			if (event.keyCode == "13") {
+				$("#loginbtn").click();
+			}
+		});
+		$("#PWD").keydown(function(event) {
+			if (event.keyCode == "13") {
+				$("#loginbtn").click();
+			}
+		});
+		$("#reset").click(function() {
+			$("#ACC").val("");
+			$("#PWD").val("");
+			$("#hidden").hide();
+
+		});
+
+	});
+
+	function regist() {
+
+		window.open('regist.jsp', '_self', '');
+
+	};
+</script>
+
+<title>系统登录</title>
+</head>
+
+<body>
+	<div id="asd">
+		<div id="header">
+			<!-- <img src="inc/img/cylogo.png">  -->辰元纺织科技有限公司
+		</div>
+		<div id="SginMain">
+			<div id="SginMainbg" align="center">
+				<div id="SginTitle">员工登录系统</div>
+				<div class="form-group">
+					<label class="sr-only" for="exampleInputEmail3">Email
+						address</label> <input type="text" class="form-control" id="ACC"
+						name="ACC" placeholder="请输入用户名"
+						style="width: 254px; height: 35px; font-size: 14px;">
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="exampleInputPassword3">Password</label>
+					<input type="password" class="form-control" id="PWD" name="PWD"
+						placeholder="请输入密码"
+						style="width: 254px; height: 35px; font-size: 14px;">
+				</div>
+				<div class="checkbox" style="text-align: left; margin-left: 10%;">
+					<label dir="ltr"> <input type="checkbox"> <span
+						style="color: #3f89ec; font-size: 12px;">下次自动登录</span>
+					</label>
+				</div>
+
+				<button type="button" id="loginbtn" class="btn btn-primary"
+					style="width: 254px; height: 35px; font-size: 14px; background-color: #3f89ec; border: 0px; margin-top: 5px;">登录</button>
+				<div id="SginLink">
+					<a href="javascript:void(0)"><span
+						style="color: #3f89ec; font-size: 14px;">微信扫码登录</span></a> | <a
+						href="javascript:void(0)"><img src="inc/img/qq.png"></a>
+				</div>
+				<p  id="hidden" hidden="false">
+					<font color="#0000FF">账户或者密码错误</font>
+				</p>
+			</div>
+		</div>
+		<div id="footer">2017 中山辰元纺织科技有限公司 粤ICP备17082217号-1</div>
+	</div>
+
+</body>
+</html>

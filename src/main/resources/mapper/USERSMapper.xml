@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.USERSMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.USERS">
+    <id column="ACCID" jdbcType="VARCHAR" property="ACCID" />
+    <result column="NAME" jdbcType="VARCHAR" property="NAME" />
+    <result column="PWD" jdbcType="VARCHAR" property="PWD" />
+    <result column="PMMUD02" jdbcType="VARCHAR" property="PMMUD02" />
+    <result column="QQ" jdbcType="VARCHAR" property="QQ" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="EMAIL" />
+    <result column="WECHAT" jdbcType="VARCHAR" property="WECHAT" />
+    <result column="TEL" jdbcType="VARCHAR" property="TEL" />
+    <result column="HP" jdbcType="VARCHAR" property="HP" />
+    <result column="ACC" jdbcType="VARCHAR" property="ACC" />
+    <result column="DEPT" jdbcType="VARCHAR" property="DEPT" />
+    <result column="ORG" jdbcType="VARCHAR" property="ORG" />
+    <result column="CHGTIME" jdbcType="VARCHAR" property="CHGTIME" />
+    <result column="STATUS" jdbcType="CHAR" property="STATUS" />
+    <result column="ROLE" jdbcType="VARCHAR" property="ROLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ACCID, NAME, PWD, PMMUD02, QQ, EMAIL, WECHAT, TEL, HP, ACC, DEPT, ORG, CHGTIME, STATUS, 
+    ROLE
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.USERSExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from USERS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USERS
+    where ACCID = #{ACCID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from USERS
+    where ACCID = #{ACCID,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.USERSExample">
+    delete from USERS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.USERS">
+    <selectKey keyProperty="ACCID" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into USERS (ACCID, NAME, PWD, 
+      PMMUD02, QQ, EMAIL, 
+      WECHAT, TEL, HP, ACC, 
+      DEPT, ORG, CHGTIME, 
+      STATUS, ROLE)
+    values (#{ACCID,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, #{PWD,jdbcType=VARCHAR}, 
+      #{PMMUD02,jdbcType=VARCHAR}, #{QQ,jdbcType=VARCHAR}, #{EMAIL,jdbcType=VARCHAR}, 
+      #{WECHAT,jdbcType=VARCHAR}, #{TEL,jdbcType=VARCHAR}, #{HP,jdbcType=VARCHAR}, #{ACC,jdbcType=VARCHAR}, 
+      #{DEPT,jdbcType=VARCHAR}, #{ORG,jdbcType=VARCHAR}, #{CHGTIME,jdbcType=VARCHAR}, 
+      #{STATUS,jdbcType=CHAR}, #{ROLE,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.USERS">
+    <selectKey keyProperty="ACCID" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into USERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      ACCID,
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="PWD != null">
+        PWD,
+      </if>
+      <if test="PMMUD02 != null">
+        PMMUD02,
+      </if>
+      <if test="QQ != null">
+        QQ,
+      </if>
+      <if test="EMAIL != null">
+        EMAIL,
+      </if>
+      <if test="WECHAT != null">
+        WECHAT,
+      </if>
+      <if test="TEL != null">
+        TEL,
+      </if>
+      <if test="HP != null">
+        HP,
+      </if>
+      <if test="ACC != null">
+        ACC,
+      </if>
+      <if test="DEPT != null">
+        DEPT,
+      </if>
+      <if test="ORG != null">
+        ORG,
+      </if>
+      <if test="CHGTIME != null">
+        CHGTIME,
+      </if>
+      <if test="STATUS != null">
+        STATUS,
+      </if>
+      <if test="ROLE != null">
+        ROLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{ACCID,jdbcType=VARCHAR},
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PWD != null">
+        #{PWD,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD02 != null">
+        #{PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="QQ != null">
+        #{QQ,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="WECHAT != null">
+        #{WECHAT,jdbcType=VARCHAR},
+      </if>
+      <if test="TEL != null">
+        #{TEL,jdbcType=VARCHAR},
+      </if>
+      <if test="HP != null">
+        #{HP,jdbcType=VARCHAR},
+      </if>
+      <if test="ACC != null">
+        #{ACC,jdbcType=VARCHAR},
+      </if>
+      <if test="DEPT != null">
+        #{DEPT,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG != null">
+        #{ORG,jdbcType=VARCHAR},
+      </if>
+      <if test="CHGTIME != null">
+        #{CHGTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="STATUS != null">
+        #{STATUS,jdbcType=CHAR},
+      </if>
+      <if test="ROLE != null">
+        #{ROLE,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.USERSExample" resultType="java.lang.Long">
+    select count(*) from USERS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update USERS
+    <set>
+      <if test="record.ACCID != null">
+        ACCID = #{record.ACCID,jdbcType=VARCHAR},
+      </if>
+      <if test="record.NAME != null">
+        NAME = #{record.NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PWD != null">
+        PWD = #{record.PWD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.PMMUD02 != null">
+        PMMUD02 = #{record.PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.QQ != null">
+        QQ = #{record.QQ,jdbcType=VARCHAR},
+      </if>
+      <if test="record.EMAIL != null">
+        EMAIL = #{record.EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="record.WECHAT != null">
+        WECHAT = #{record.WECHAT,jdbcType=VARCHAR},
+      </if>
+      <if test="record.TEL != null">
+        TEL = #{record.TEL,jdbcType=VARCHAR},
+      </if>
+      <if test="record.HP != null">
+        HP = #{record.HP,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ACC != null">
+        ACC = #{record.ACC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.DEPT != null">
+        DEPT = #{record.DEPT,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ORG != null">
+        ORG = #{record.ORG,jdbcType=VARCHAR},
+      </if>
+      <if test="record.CHGTIME != null">
+        CHGTIME = #{record.CHGTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="record.STATUS != null">
+        STATUS = #{record.STATUS,jdbcType=CHAR},
+      </if>
+      <if test="record.ROLE != null">
+        ROLE = #{record.ROLE,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update USERS
+    set ACCID = #{record.ACCID,jdbcType=VARCHAR},
+      NAME = #{record.NAME,jdbcType=VARCHAR},
+      PWD = #{record.PWD,jdbcType=VARCHAR},
+      PMMUD02 = #{record.PMMUD02,jdbcType=VARCHAR},
+      QQ = #{record.QQ,jdbcType=VARCHAR},
+      EMAIL = #{record.EMAIL,jdbcType=VARCHAR},
+      WECHAT = #{record.WECHAT,jdbcType=VARCHAR},
+      TEL = #{record.TEL,jdbcType=VARCHAR},
+      HP = #{record.HP,jdbcType=VARCHAR},
+      ACC = #{record.ACC,jdbcType=VARCHAR},
+      DEPT = #{record.DEPT,jdbcType=VARCHAR},
+      ORG = #{record.ORG,jdbcType=VARCHAR},
+      CHGTIME = #{record.CHGTIME,jdbcType=VARCHAR},
+      STATUS = #{record.STATUS,jdbcType=CHAR},
+      ROLE = #{record.ROLE,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.USERS">
+    update USERS
+    <set>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PWD != null">
+        PWD = #{PWD,jdbcType=VARCHAR},
+      </if>
+      <if test="PMMUD02 != null">
+        PMMUD02 = #{PMMUD02,jdbcType=VARCHAR},
+      </if>
+      <if test="QQ != null">
+        QQ = #{QQ,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="WECHAT != null">
+        WECHAT = #{WECHAT,jdbcType=VARCHAR},
+      </if>
+      <if test="TEL != null">
+        TEL = #{TEL,jdbcType=VARCHAR},
+      </if>
+      <if test="HP != null">
+        HP = #{HP,jdbcType=VARCHAR},
+      </if>
+      <if test="ACC != null">
+        ACC = #{ACC,jdbcType=VARCHAR},
+      </if>
+      <if test="DEPT != null">
+        DEPT = #{DEPT,jdbcType=VARCHAR},
+      </if>
+      <if test="ORG != null">
+        ORG = #{ORG,jdbcType=VARCHAR},
+      </if>
+      <if test="CHGTIME != null">
+        CHGTIME = #{CHGTIME,jdbcType=VARCHAR},
+      </if>
+      <if test="STATUS != null">
+        STATUS = #{STATUS,jdbcType=CHAR},
+      </if>
+      <if test="ROLE != null">
+        ROLE = #{ROLE,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ACCID = #{ACCID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.USERS">
+    update USERS
+    set NAME = #{NAME,jdbcType=VARCHAR},
+      PWD = #{PWD,jdbcType=VARCHAR},
+      PMMUD02 = #{PMMUD02,jdbcType=VARCHAR},
+      QQ = #{QQ,jdbcType=VARCHAR},
+      EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      WECHAT = #{WECHAT,jdbcType=VARCHAR},
+      TEL = #{TEL,jdbcType=VARCHAR},
+      HP = #{HP,jdbcType=VARCHAR},
+      ACC = #{ACC,jdbcType=VARCHAR},
+      DEPT = #{DEPT,jdbcType=VARCHAR},
+      ORG = #{ORG,jdbcType=VARCHAR},
+      CHGTIME = #{CHGTIME,jdbcType=VARCHAR},
+      STATUS = #{STATUS,jdbcType=CHAR},
+      ROLE = #{ROLE,jdbcType=VARCHAR}
+    where ACCID = #{ACCID,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyuantech.eps.dao.DdlogMapper">
+  <resultMap id="BaseResultMap" type="com.chenyuantech.eps.bean.Ddlog">
+    <id column="DDID" jdbcType="VARCHAR" property="ddid" />
+    <result column="REQUIREMENTDD" jdbcType="VARCHAR" property="requirementdd" />
+    <result column="REPLYDD" jdbcType="VARCHAR" property="replydd" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="ACCID" jdbcType="VARCHAR" property="accid" />
+    <result column="LAUNCHTIME" jdbcType="VARCHAR" property="launchtime" />
+    <result column="CHGID" jdbcType="VARCHAR" property="chgid" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="PMN01" jdbcType="VARCHAR" property="pmn01" />
+    <result column="PMN02" jdbcType="DECIMAL" property="pmn02" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DDID, REQUIREMENTDD, REPLYDD, STATUS, ACCID, LAUNCHTIME, CHGID, MEMO, PMN01, PMN02
+  </sql>
+  <select id="selectByExample" parameterType="com.chenyuantech.eps.bean.DdlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from DDLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from DDLOG
+    where DDID = #{ddid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from DDLOG
+    where DDID = #{ddid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chenyuantech.eps.bean.DdlogExample">
+    delete from DDLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chenyuantech.eps.bean.Ddlog">
+    <selectKey keyProperty="ddid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into DDLOG (DDID, REQUIREMENTDD, REPLYDD, 
+      STATUS, ACCID, LAUNCHTIME, 
+      CHGID, MEMO, PMN01, 
+      PMN02)
+    values (#{ddid,jdbcType=VARCHAR}, #{requirementdd,jdbcType=VARCHAR}, #{replydd,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{accid,jdbcType=VARCHAR}, #{launchtime,jdbcType=VARCHAR}, 
+      #{chgid,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{pmn01,jdbcType=VARCHAR}, 
+      #{pmn02,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chenyuantech.eps.bean.Ddlog">
+    <selectKey keyProperty="ddid" order="BEFORE" resultType="java.lang.String">
+      select sys_guid() from dual
+    </selectKey>
+    insert into DDLOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      DDID,
+      <if test="requirementdd != null">
+        REQUIREMENTDD,
+      </if>
+      <if test="replydd != null">
+        REPLYDD,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="accid != null">
+        ACCID,
+      </if>
+      <if test="launchtime != null">
+        LAUNCHTIME,
+      </if>
+      <if test="chgid != null">
+        CHGID,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="pmn01 != null">
+        PMN01,
+      </if>
+      <if test="pmn02 != null">
+        PMN02,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{ddid,jdbcType=VARCHAR},
+      <if test="requirementdd != null">
+        #{requirementdd,jdbcType=VARCHAR},
+      </if>
+      <if test="replydd != null">
+        #{replydd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="launchtime != null">
+        #{launchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="chgid != null">
+        #{chgid,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn01 != null">
+        #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        #{pmn02,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chenyuantech.eps.bean.DdlogExample" resultType="java.lang.Long">
+    select count(*) from DDLOG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update DDLOG
+    <set>
+      <if test="record.ddid != null">
+        DDID = #{record.ddid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requirementdd != null">
+        REQUIREMENTDD = #{record.requirementdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replydd != null">
+        REPLYDD = #{record.replydd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accid != null">
+        ACCID = #{record.accid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.launchtime != null">
+        LAUNCHTIME = #{record.launchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chgid != null">
+        CHGID = #{record.chgid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null">
+        MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmn01 != null">
+        PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmn02 != null">
+        PMN02 = #{record.pmn02,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update DDLOG
+    set DDID = #{record.ddid,jdbcType=VARCHAR},
+      REQUIREMENTDD = #{record.requirementdd,jdbcType=VARCHAR},
+      REPLYDD = #{record.replydd,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      ACCID = #{record.accid,jdbcType=VARCHAR},
+      LAUNCHTIME = #{record.launchtime,jdbcType=VARCHAR},
+      CHGID = #{record.chgid,jdbcType=VARCHAR},
+      MEMO = #{record.memo,jdbcType=VARCHAR},
+      PMN01 = #{record.pmn01,jdbcType=VARCHAR},
+      PMN02 = #{record.pmn02,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chenyuantech.eps.bean.Ddlog">
+    update DDLOG
+    <set>
+      <if test="requirementdd != null">
+        REQUIREMENTDD = #{requirementdd,jdbcType=VARCHAR},
+      </if>
+      <if test="replydd != null">
+        REPLYDD = #{replydd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="accid != null">
+        ACCID = #{accid,jdbcType=VARCHAR},
+      </if>
+      <if test="launchtime != null">
+        LAUNCHTIME = #{launchtime,jdbcType=VARCHAR},
+      </if>
+      <if test="chgid != null">
+        CHGID = #{chgid,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn01 != null">
+        PMN01 = #{pmn01,jdbcType=VARCHAR},
+      </if>
+      <if test="pmn02 != null">
+        PMN02 = #{pmn02,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where DDID = #{ddid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chenyuantech.eps.bean.Ddlog">
+    update DDLOG
+    set REQUIREMENTDD = #{requirementdd,jdbcType=VARCHAR},
+      REPLYDD = #{replydd,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ACCID = #{accid,jdbcType=VARCHAR},
+      LAUNCHTIME = #{launchtime,jdbcType=VARCHAR},
+      CHGID = #{chgid,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      PMN01 = #{pmn01,jdbcType=VARCHAR},
+      PMN02 = #{pmn02,jdbcType=DECIMAL}
+    where DDID = #{ddid,jdbcType=VARCHAR}
+  </update>
+</mapper>
