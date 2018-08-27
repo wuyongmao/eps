@@ -12,9 +12,9 @@
 
 
 ### 主要功能
- + mybatis 分页
- + mbg.xml 为逆向创建dao、mapper配置文件。直接运行生成    com.chenyuantech.eps.test.MBGTest 
- + 定时发送邮件
+> + mybatis 分页
+> + mbg.xml 为逆向创建dao、mapper配置文件。直接运行生成    com.chenyuantech.eps.test.MBGTest 
+> + 定时发送邮件
  
 
 
@@ -22,5 +22,6 @@
 ### 备注
 > - oracle dmp文件 为 eps20180827.dmp
 > - 将数据库中eps用户与eps用户的表导出
-> >   exp eps/eps@eps file=E:\eps.dmp owner=(eps)
-> - 导入 imp eps/eps@eps file="E:\dbbak\eps.dmp" full=y ignore=y
+>       >   exp eps/eps@eps file=E:\eps.dmp owner=(eps)
+> - dmp文件导入
+>       >  imp eps/eps@eps file="E:\dbbak\eps.dmp" full=y ignore=y
