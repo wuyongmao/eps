@@ -20,5 +20,5 @@
 
  
 ### 备注
-- oracle dmp文件 为git push -u origin master
+- oracle dmp文件 为 eps20180827.dmp
 
