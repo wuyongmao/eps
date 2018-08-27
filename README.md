@@ -22,7 +22,7 @@
 ### 备注
 > - oracle dmp文件 为 eps20180827.dmp
 > - 将数据库中eps用户与eps用户的表导出
->  >   exp eps/eps@eps file=E:\eps.dmp owner=(eps)
+>>   exp eps/eps@eps file=E:\eps.dmp owner=(eps)
 > - dmp文件导入
->  >  imp eps/eps@eps file="E:\dbbak\eps.dmp" full=y ignore=y
+>>  imp eps/eps@eps file="E:\dbbak\eps.dmp" full=y ignore=y
 ______
