@@ -21,4 +21,5 @@
  
 ### 备注
 - oracle dmp文件 为 eps20180827.dmp
-
+- 将数据库中eps用户与eps用户的表导出
+   exp eps/eps@eps file=E:\eps.dmp owner=(eps)
